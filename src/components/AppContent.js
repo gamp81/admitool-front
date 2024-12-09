@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { request, setAuthHeader } from '../helpers/axios_helper';
 
-import Buttons from './Buttons';
+/* import Buttons from './Buttons'; */
 import AuthContent from './AuthContent';
 import LoginForm from './LoginForm';
 import WelcomeContent from './WelcomeContent'
@@ -71,10 +71,10 @@ export default class AppContent extends React.Component {
     render() {
         return (
             <>
-                <Buttons
+      {/*   <Buttons
                     login={this.login}
                     logout={this.logout}
-                />
+        /> */}
 
                 {this.state.componentToShow === "welcome" && <WelcomeContent /> }
                 {this.state.componentToShow === "login" && <LoginForm onLogin={this.onLogin} onRegister={this.onRegister} />}

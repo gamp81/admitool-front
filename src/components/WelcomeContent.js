@@ -1,4 +1,5 @@
 import * as React from 'react';
+import banner from '../images/banner_registro.webp'
 
 export default class WelcomeContent extends React.Component {
 
@@ -8,7 +9,8 @@ export default class WelcomeContent extends React.Component {
                 <div className="jumbotron jumbotron-fluid">
                     <div className="container">
                         <h1 className="display-4">Welcome</h1>
-                        <p className="lead">Login to see protected content.</p>
+              {/*   <p className="lead">Login to see protected content.</p> */}
+                <img src={banner} className="App-banner" alt="logo" />
                     </div>
                 </div>
             </div>
