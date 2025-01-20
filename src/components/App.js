@@ -12,9 +12,9 @@ function App() {
            
       {/* <Header pageTitle="Frontend authenticated with JWT" logoSrc={logo} /> */}
       <Pagerouter>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col">
             <AppContent />
           </div>
         </div>

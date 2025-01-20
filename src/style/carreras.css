@@ -1,0 +1,117 @@
+/* Contenedor principal */
+.table-container {
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Encabezado con ícono y título */
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .icon img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .title {
+    color: #007bff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Contenedor de la tabla (grid) */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 10px; /* Espacio entre elementos */
+  }
+  
+  /* Elementos de la tabla */
+  .grid-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .grid-item input {
+    margin: 0;
+  }
+/* Contenedor principal de todas las secciones */
+.sections-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre secciones */
+    justify-content: center;
+  }
+  
+  /* Cada sección */
+  .section {
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 400px;
+    flex: 1 1 calc(50% - 20px); /* Dos columnas en pantallas grandes */
+    box-sizing: border-box;
+  }
+  
+  /* Encabezado con ícono y título */
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .icon img {
+    width: 60%;
+    height: auto;
+  }
+  
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Contenedor de la tabla (grid) */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
+    gap: 10px; /* Espacio entre elementos */
+  }
+  
+  /* Elementos de la tabla */
+  .grid-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .grid-item input {
+    margin: 0;
+  }
