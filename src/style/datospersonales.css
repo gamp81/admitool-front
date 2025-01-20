@@ -1,0 +1,5 @@
+/* FormularioDatosPersonales.css */
+.formulario {
+    display: grid;
+    grid-template-columns: repeat
+}

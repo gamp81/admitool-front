@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import Alert from '@mui/material/Alert';
+import DatosPersonales from './datospersonales';
+import '../style/datospersonales.css';
 function Faspirante() {
   const [key, setKey] = useState('pestaña1');
 
@@ -31,7 +33,7 @@ function Faspirante() {
             Contenido de la Pestaña 1
             </Tab>
             <Tab eventKey="pestaña2" title="DATOS PERSONALES">
-                Contenido de la Pestaña 2
+               <DatosPersonales></DatosPersonales>
             </Tab>
             <Tab eventKey="pestaña3" title="INFORMACION ACADEMICA">
                 Contenido de la Pestaña 3
@@ -43,6 +45,7 @@ function Faspirante() {
                 Contenido de la Pestaña 5
             </Tab>
         </Tabs>
+      
     </div>
    
   );
