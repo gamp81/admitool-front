@@ -4,6 +4,7 @@ import NavBarHeader from '../layouts/navbar';
 import Login2 from '../components/LoginForm';
 import Login from '../components/login';
 import Register from '../components/register';
+import Carrera from '../pages/carreras';
 import WelcomeContent from '../components/WelcomeContent'
 const Pagerouter = () =>{
     return (
@@ -14,6 +15,7 @@ const Pagerouter = () =>{
                 {/*     <Route path='register' element={ <Register /> } /> */}
                     <Route path='login' element={ <Login /> } /> 
                     <Route path='register' element={ <Register/> } /> 
+                    <Route path='carreras' element={ <Carrera /> } />
                     <Route path='login2' element={ <Login2 /> } />
                     <Route path='*' element={ <Navigate replace to="/"/> }/>
                 </Route>
