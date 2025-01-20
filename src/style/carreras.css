@@ -98,7 +98,7 @@
   }
   
   /* Contenedor de la tabla (grid) */
-  .grid {
+  .grid2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
     gap: 10px; /* Espacio entre elementos */
@@ -115,3 +115,20 @@
   .grid-item input {
     margin: 0;
   }
+
+  /* styles.css */
+.containerbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
