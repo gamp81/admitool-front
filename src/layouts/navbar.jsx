@@ -15,7 +15,8 @@ const NavBar = () => {
                 <Nav.Link as={Link} to="/" >Inicio</Nav.Link>
              
                 <Nav.Link  as={Link} to="/login">Ingresar/Crear Cuenta</Nav.Link>             
-                <Nav.Link  as={Link} to="/carreras">Carreras</Nav.Link>            
+                <Nav.Link  as={Link} to="/carreras">Carreras</Nav.Link>   
+                <Nav.Link  as={Link} to="/faspirante">Ficha</Nav.Link>            
                 
             
             
