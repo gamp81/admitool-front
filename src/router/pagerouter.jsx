@@ -8,6 +8,7 @@ import Register from '../components/register';
 import Carrera from '../pages/carreras';
 import Faspirante from '../pages/faspirante'
 import WelcomeContent from '../components/WelcomeContent'
+import DatosPersonales from '../pages/datospersonales';
 const Pagerouter = () =>{
     return (
         <BrowserRouter>
@@ -20,6 +21,7 @@ const Pagerouter = () =>{
                     <Route path='register' element={ <CrearCuenta/> } /> 
                     <Route path='carreras' element={ <Carrera /> } />
                     <Route path='faspirante' element={ <Faspirante /> } />
+                    <Route path='DatosPersonales' element={ <DatosPersonales /> } />
                     <Route path='login2' element={ <Login2 /> } />
                     <Route path='*' element={ <Navigate replace to="/"/> }/>
                 </Route>

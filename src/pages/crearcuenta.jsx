@@ -137,7 +137,7 @@ const CrearCuenta = () => {
                 <button type="button" onClick={() => console.log("Volver")}>
                     VOLVER
                 </button>
-                <button type="submit">SIGUIENTE</button>
+                <button type="button" onClick={handleNext}>SIGUIENTE</button>
                 </div>
             </form>
         </div>
@@ -146,33 +146,35 @@ const CrearCuenta = () => {
 
      {step === 2 && (
          <div>
-         <h2>CREACIÓN DE CUENTA</h2>
-         <form onSubmit={handleSubmit}>
-           <label>
-             Ingrese su email
-             <input
-               type="email"
-               name="email"
-               value={formData.email}
-               onChange={handleChange}
-             />
-           </label>
-           <label>
-             Ingrese su contraseña
-             <input
-               type="password"
-               name="contrasena"
-               value={formData.contrasena}
-               onChange={handleChange}
-             />
-           </label>
-           <div className="form-buttons">
-             <button type="button" onClick={() => setStep(1)}>
-               VOLVER
-             </button>
-             <button type="submit">REGISTRAR</button>
-           </div>
-         </form>
+         <h6>CREACIÓN DE CUENTA</h6>
+         <div className="formulario-container">
+            <form onSubmit={handleSubmit}>
+            <label>
+                Ingrese su email
+                <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                />
+            </label>
+            <label>
+                Ingrese su contraseña
+                <input
+                type="password"
+                name="contrasena"
+                value={formData.contrasena}
+                onChange={handleChange}
+                />
+            </label>
+            <div className="form-buttons">
+                <button type="button" onClick={() => setStep(1)}>
+                VOLVER
+                </button>
+                <button type="submit">REGISTRAR</button>
+            </div>
+            </form>
+            </div>
        </div>
      )}
     </>

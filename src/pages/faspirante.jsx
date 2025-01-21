@@ -1,54 +1,67 @@
-import React, {useState, useEffect} from 'react';
-import { Tabs, Tab } from 'react-bootstrap';
-import Alert from '@mui/material/Alert';
+import React, { useState } from "react";
+import "../style/Tabs.css";
 import DatosPersonales from './datospersonales';
-import '../style/datospersonales.css';
-function Faspirante() {
-  const [key, setKey] = useState('pestaña1');
+import '../style/Tabs.css';
+const Faspirante = () => {
+  const [activeTab, setActiveTab] = useState("datosPersonales");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "declaracion":
+        return <div>Contenido de Declaración de Veracidad</div>;
+      case "datosPersonales":
+        return <div> <DatosPersonales></DatosPersonales></div>;
+      case "informacionAcademica":
+        return <div>Contenido de Información Académica</div>;
+      case "documentacion":
+        return <div>Contenido de Documentación</div>;
+      case "contactoFamiliar":
+        return <div>Contenido de Contacto Familiar</div>;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div className='container'>
-         <Alert
-              //icon={<InfoIcon fontSize="inherit" />}
-              severity="info"
-              sx={{
-                backgroundColor: '#e0f7fa', // Fondo celeste
-                color: '#00796b', // Color del texto
-                '& .MuiAlert-icon': {
-                  color: '#00796b', // Color del ícono
-                },
-              }}
-            ><p><b>Para su conocimiento:</b> 
-                <li>Usted debe actualizar obligatoriamente toda información que se solicite en cada una de las secciones.</li>
-                <li>Omitir o falsear los datos expone al estudiante a sanciones</li>
-              </p>
-            </Alert>
-        <Tabs
-            id="controlled-tab-example"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="mb-3"
-            >
-            <Tab eventKey="pestaña1" title="DECLARACION DE VERACIDAD">
-            Contenido de la Pestaña 1
-            </Tab>
-            <Tab eventKey="pestaña2" title="DATOS PERSONALES">
-               <DatosPersonales></DatosPersonales>
-            </Tab>
-            <Tab eventKey="pestaña3" title="INFORMACION ACADEMICA">
-                Contenido de la Pestaña 3
-            </Tab>
-            <Tab eventKey="pestaña4" title="DOCUMENTACION">
-                Contenido de la Pestaña 4
-            </Tab>
-            <Tab eventKey="pestaña5" title="CONTACTO FAMILIAR">
-                Contenido de la Pestaña 5
-            </Tab>
-        </Tabs>
-      
+    <div className="tabs-container">
+      {/* Encabezado de las pestañas */}
+      <div className="tabs-header">
+        <button
+          className={activeTab === "declaracion" ? "active" : ""}
+          onClick={() => setActiveTab("declaracion")}
+        >
+          DECLARACIÓN DE VERACIDAD
+        </button>
+        <button
+          className={activeTab === "datosPersonales" ? "active" : ""}
+          onClick={() => setActiveTab("datosPersonales")}
+        >
+          DATOS PERSONALES
+        </button>
+        <button
+          className={activeTab === "informacionAcademica" ? "active" : ""}
+          onClick={() => setActiveTab("informacionAcademica")}
+        >
+          INFORMACIÓN ACADÉMICA
+        </button>
+        <button
+          className={activeTab === "documentacion" ? "active" : ""}
+          onClick={() => setActiveTab("documentacion")}
+        >
+          DOCUMENTACIÓN
+        </button>
+        <button
+          className={activeTab === "contactoFamiliar" ? "active" : ""}
+          onClick={() => setActiveTab("contactoFamiliar")}
+        >
+          CONTACTO FAMILIAR
+        </button>
+      </div>
+
+      {/* Contenido dinámico basado en la pestaña activa */}
+      <div className="tabs-content">{renderContent()}</div>
     </div>
-   
   );
-}
+};
 
 export default Faspirante;

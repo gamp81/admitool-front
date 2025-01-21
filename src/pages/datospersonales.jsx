@@ -50,131 +50,104 @@ const DatosPersonales = () => {
 
   return (
     <form onSubmit={handleSubmit} className="formulario">
-      <div className="campo">
-        <label htmlFor="nombres">Nombres</label>
-        <input
-          type="text"
-          id="nombres"
-          name="nombres"
-          value={formData.nombres}
-          onChange={handleChange}
-          required
-        />
+    <div className="form-container">
+      <h2>PERSONAL</h2>
+      <div className="form-grid">
+        <div>
+          <label>*Nombres</label>
+          <input type="text" placeholder="GONZALO" />
+        </div>
+        <div>
+          <label>*Apellidos</label>
+          <input type="text" placeholder="Moncada Paz" />
+        </div>
+        <div>
+          <label>*Cédula</label>
+          <input type="text" placeholder="0703178830" />
+        </div>
+        <div>
+          <label>*Estado civil</label>
+          <select>
+            <option>Casado</option>
+            <option>Soltero</option>
+          </select>
+        </div>
+        <div>
+          <label>*Sexo</label>
+          <select>
+            <option>HOMBRE</option>
+            <option>MUJER</option>
+          </select>
+        </div>
+        <div>
+          <label>*Autoidentificación de género</label>
+          <select>
+            <option>MASCULINO</option>
+            <option>FEMENINO</option>
+          </select>
+        </div>
+        <div>
+          <label>*Etnia</label>
+          <select>
+            <option>Mestizo</option>
+            <option>Indígena</option>
+          </select>
+        </div>
+        <div>
+          <label>*Tipo de sangre</label>
+          <select>
+            <option>O+</option>
+            <option>A+</option>
+          </select>
+        </div>
+        <div>
+          <label>*Edad</label>
+          <input type="number" placeholder="43" />
+        </div>
+        <div>
+          <label>*Fecha de nacimiento</label>
+          <input type="date" value="1981-08-04" />
+        </div>
       </div>
-      <div className="campo">
-        <label htmlFor="apellidos">Apellidos</label>
-        <input
-          type="text"
-          id="apellidos"
-          name="apellidos"
-          value={formData.apellidos}
-          onChange={handleChange}
-          required
-        />
+
+      <h2>COMUNICACIÓN</h2>
+      <div className="form-grid">
+        <div>
+          <label>*Correo personal</label>
+          <input type="email" placeholder="gmitiweb@gmail.com" />
+        </div>
+        <div>
+          <label>*Código del país</label>
+          <input type="text" placeholder="593" />
+        </div>
+        <div>
+          <label>*Número de celular personal</label>
+          <input type="text" placeholder="86536029" />
+        </div>
       </div>
-      <div className="campo">
-        <label htmlFor="cedula">Cédula</label>
-        <input
-          type="text"
-          id="cedula"
-          name="cedula"
-          value={formData.cedula}
-          onChange={handleChange}
-          required
-        />
+
+      <h2>LUGAR DE NACIMIENTO</h2>
+      <div className="form-grid">
+        <div>
+          <label>*País</label>
+          <select>
+            <option>ECUADOR</option>
+          </select>
+        </div>
+        <div>
+          <label>*Estado / Provincia</label>
+          <select>
+            <option>EL ORO</option>
+          </select>
+        </div>
+        <div>
+          <label>*Ciudad</label>
+          <input type="text" placeholder="MACHALA" />
+        </div>
       </div>
-      <div className="campo">
-        <label htmlFor="estadoCivil">Estado Civil</label>
-        <select
-          id="estadoCivil"
-          name="estadoCivil"
-          value={formData.estadoCivil}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Seleccione</option>
-          <option value="soltero">Soltero/a</option>
-          <option value="casado">Casado/a</option>
-          <option value="divorciado">Divorciado/a</option>
-          <option value="viudo">Viudo/a</option>
-        </select>
-      </div>
-      <div className="campo">
-        <label htmlFor="sexo">Sexo</label>
-        <select
-          id="sexo"
-          name="sexo"
-          value={formData.sexo}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Seleccione</option>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-        </select>
-      </div>
-      <div className="campo">
-        <label htmlFor="genero">Género</label>
-        <select
-          id="genero"
-          name="genero"
-          value={formData.genero}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Seleccione</option>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-          <option value="noBinario">No Binario</option>
-          <option value="otro">Otro</option>
-        </select>
-      </div>
-      <div className="campo">
-        <label htmlFor="etnia">Etnia</label>
-        <input
-          type="text"
-          id="etnia"
-          name="etnia"
-          value={formData.etnia}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="campo">
-        <label htmlFor="tipoSangre">Tipo de Sangre</label>
-        <input
-          type="text"
-          id="tipoSangre"
-          name="tipoSangre"
-          value={formData.tipoSangre}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="campo">
-        <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
-        <input
-          type="date"
-          id="fechaNacimiento"
-          name="fechaNacimiento"
-          value={formData.fechaNacimiento}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="campo">
-        <label htmlFor="edad">Edad</label>
-        <input
-          type="text"
-          id="edad"
-          name="edad"
-          value={formData.edad}
-          readOnly
-        />
-      </div>
-      <div className="campo">
-        <button type="submit">Enviar</button>
-      </div>
+
+      <button className="submit-button">Guardar y Continuar →</button>
+    </div>
     </form>
   );
 };

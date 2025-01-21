@@ -18,8 +18,8 @@ const NavBar = () => {
                 <Nav.Link  as={Link} to="/register">Crear Cuenta</Nav.Link>            
                 <Nav.Link  as={Link} to="/carreras">Carreras</Nav.Link>   
                 <Nav.Link  as={Link} to="/faspirante">Ficha</Nav.Link>            
+                <Nav.Link  as={Link} to="/DatosPersonales">DatosPersonales</Nav.Link>   
                 
-            
             
                 
             </Nav>
