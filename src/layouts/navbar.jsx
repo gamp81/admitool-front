@@ -14,7 +14,8 @@ const NavBar = () => {
             <Nav className="me-auto">
                 <Nav.Link as={Link} to="/" >Inicio</Nav.Link>
              
-                <Nav.Link  as={Link} to="/login">Ingresar/Crear Cuenta</Nav.Link>             
+                <Nav.Link  as={Link} to="/login">Ingresar/Crear Cuenta</Nav.Link>   
+                <Nav.Link  as={Link} to="/register">Crear Cuenta</Nav.Link>            
                 <Nav.Link  as={Link} to="/carreras">Carreras</Nav.Link>   
                 <Nav.Link  as={Link} to="/faspirante">Ficha</Nav.Link>            
                 
