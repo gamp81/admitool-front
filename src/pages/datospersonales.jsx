@@ -50,7 +50,7 @@ const DatosPersonales = () => {
 
   return (
     <form onSubmit={handleSubmit} className="formulario">
-    <div className="form-container">
+    {/* <div className="form-container"> */}
       <p className='message'>Recuerde:
         <li>En esta sección debe ingresar información personal.</li>
         <li>Los campos marcados con asterisco (*) son obligatorios.</li>
@@ -161,7 +161,7 @@ const DatosPersonales = () => {
       </div>
 
       <button className="submit-button">Guardar y Continuar →</button>
-    </div>
+    {/* </div> */}
     </form>
   );
 };

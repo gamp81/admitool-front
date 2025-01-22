@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style/Tabs.css";
 import DatosPersonales from './datospersonales';
 import '../style/Tabs.css';
+import Alert from '@mui/material/Alert';
 const Faspirante = () => {
   const [activeTab, setActiveTab] = useState("datosPersonales");
 
@@ -25,6 +26,21 @@ const Faspirante = () => {
   return (
     <div className="tabs-container">
       {/* Encabezado de las pestañas */}
+      <Alert
+              //icon={<InfoIcon fontSize="inherit" />}
+              severity="info"
+              sx={{
+                backgroundColor: '#e0f7fa', // Fondo celeste
+                color: '#00796b', // Color del texto
+                '& .MuiAlert-icon': {
+                  color: '#00796b', // Color del ícono
+                },
+              }}
+            ><p><b>Para su conocimiento:</b> 
+                <li>Usted debe actualizar obligatoriamente toda información que se solicite en cada una de las secciones.</li>
+                <li>Omitir o falsear los datos expone al estudiante a sanciones</li>
+              </p>
+            </Alert>
       <div className="tabs-header">
         <button
           className={activeTab === "declaracion" ? "active" : ""}
