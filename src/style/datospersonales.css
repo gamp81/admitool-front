@@ -8,7 +8,13 @@
     border-radius: 8px;
     font-family: Arial, sans-serif;
   }
-  
+  .message {
+    background-color: #f3e962;
+    color: #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
   h2 {
     margin-top: 20px;
     margin-bottom: 10px;

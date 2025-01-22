@@ -51,19 +51,26 @@ const DatosPersonales = () => {
   return (
     <form onSubmit={handleSubmit} className="formulario">
     <div className="form-container">
+      <p className='message'>Recuerde:
+        <li>En esta sección debe ingresar información personal.</li>
+        <li>Los campos marcados con asterisco (*) son obligatorios.</li>
+        <li>Si los datos de sus nombres, apellidos, fecha de nacimiento, país, provincia, 
+          ciudad no son correctos, favor acercarse a la Oficina de Admisiones con su identificación.</li>
+      </p>
+
       <h2>PERSONAL</h2>
       <div className="form-grid">
         <div>
           <label>*Nombres</label>
-          <input type="text" placeholder="GONZALO" />
+          <input type="text" placeholder="Nombres" />
         </div>
         <div>
           <label>*Apellidos</label>
-          <input type="text" placeholder="Moncada Paz" />
+          <input type="text" placeholder="Apellidos" />
         </div>
         <div>
           <label>*Cédula</label>
-          <input type="text" placeholder="0703178830" />
+          <input type="text" placeholder="Cédula" />
         </div>
         <div>
           <label>*Estado civil</label>
@@ -84,6 +91,7 @@ const DatosPersonales = () => {
           <select>
             <option>MASCULINO</option>
             <option>FEMENINO</option>
+            <option>NO BINARIO</option>
           </select>
         </div>
         <div>
@@ -102,11 +110,11 @@ const DatosPersonales = () => {
         </div>
         <div>
           <label>*Edad</label>
-          <input type="number" placeholder="43" />
+          <input type="number" placeholder="" />
         </div>
         <div>
           <label>*Fecha de nacimiento</label>
-          <input type="date" value="1981-08-04" />
+          <input type="date" value="" />
         </div>
       </div>
 
@@ -114,7 +122,7 @@ const DatosPersonales = () => {
       <div className="form-grid">
         <div>
           <label>*Correo personal</label>
-          <input type="email" placeholder="gmitiweb@gmail.com" />
+          <input type="email" placeholder="" />
         </div>
         <div>
           <label>*Código del país</label>
@@ -122,7 +130,7 @@ const DatosPersonales = () => {
         </div>
         <div>
           <label>*Número de celular personal</label>
-          <input type="text" placeholder="86536029" />
+          <input type="text" placeholder="" />
         </div>
       </div>
 
@@ -132,12 +140,18 @@ const DatosPersonales = () => {
           <label>*País</label>
           <select>
             <option>ECUADOR</option>
+            <option>COLOMBIA</option>
+            <option>VENEZUELA</option>
+            <option>PERU</option>
           </select>
         </div>
         <div>
           <label>*Estado / Provincia</label>
           <select>
+            <option>GUAYAS</option>
+            <option>PICHINCHA</option>
             <option>EL ORO</option>
+            
           </select>
         </div>
         <div>
