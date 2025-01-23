@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "../style/Tabs.css";
 import DatosPersonales from './datospersonales';
+import Declaracion from "../components/declaracion";
 import '../style/Tabs.css';
 import Alert from '@mui/material/Alert';
 const Faspirante = () => {
-  const [activeTab, setActiveTab] = useState("datosPersonales");
+  const [activeTab, setActiveTab] = useState("declaracion");
 
   const renderContent = () => {
     switch (activeTab) {
       case "declaracion":
-        return <div>Contenido de Declaración de Veracidad</div>;
+        return <div><Declaracion/> </div>;
       case "datosPersonales":
         return <div> <DatosPersonales></DatosPersonales></div>;
       case "informacionAcademica":
@@ -24,6 +25,7 @@ const Faspirante = () => {
   };
 
   return (
+    <>
     <div className="tabs-container">
       {/* Encabezado de las pestañas */}
       <Alert
@@ -77,6 +79,7 @@ const Faspirante = () => {
       {/* Contenido dinámico basado en la pestaña activa */}
       <div className="tabs-content">{renderContent()}</div>
     </div>
+    </>
   );
 };
 
