@@ -24,7 +24,7 @@ const Pagerouter = () =>{
                     <Route path='register' element={ <CrearCuenta/> } /> 
                     <Route path='menu' element={ <Menu/> } /> 
                    
-                    <Route path='carreras' element={ <Carrera /> } />
+                    <Route path='inscripcion' element={ <Carrera /> } />
                     <Route path='faspirante' element={ <Faspirante /> } />
                     <Route path='fichaaspirante' element={ <Fichaaspirante /> } />
                     <Route path='DatosPersonales' element={ <DatosPersonales /> } />
