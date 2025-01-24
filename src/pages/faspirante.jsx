@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../style/Tabs.css";
 import DatosPersonales from './datospersonales';
 import Declaracion from "../components/declaracion";
+import Documentacion from "./documentacion";
 import '../style/Tabs.css';
 import Alert from '@mui/material/Alert';
+import InfoAcademica from "./infoacademica";
 const Faspirante = () => {
   const [activeTab, setActiveTab] = useState("declaracion");
 
@@ -14,9 +16,9 @@ const Faspirante = () => {
       case "datosPersonales":
         return <div> <DatosPersonales></DatosPersonales></div>;
       case "informacionAcademica":
-        return <div>Contenido de Información Académica</div>;
+        return <InfoAcademica></InfoAcademica>;
       case "documentacion":
-        return <div>Contenido de Documentación</div>;
+        return <Documentacion></Documentacion>;
       case "contactoFamiliar":
         return <div>Contenido de Contacto Familiar</div>;
       default:
