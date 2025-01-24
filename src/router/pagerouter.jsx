@@ -12,6 +12,7 @@ import Faspirante from '../pages/faspirante'
 import Fichaaspirante from '../pages/fichatabs'
 import WelcomeContent from '../components/WelcomeContent'
 import DatosPersonales from '../pages/datospersonales';
+import Postulacion from '../pages/postulacion';
 const Pagerouter = () =>{
     return (
         <BrowserRouter>
@@ -25,6 +26,7 @@ const Pagerouter = () =>{
                     <Route path='menu' element={ <Menu/> } /> 
                    
                     <Route path='inscripcion' element={ <Carrera /> } />
+                    <Route path='postulacion' element={ <Postulacion /> } />
                     <Route path='faspirante' element={ <Faspirante /> } />
                     <Route path='fichaaspirante' element={ <Fichaaspirante /> } />
                     <Route path='DatosPersonales' element={ <DatosPersonales /> } />
