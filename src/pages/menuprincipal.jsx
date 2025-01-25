@@ -28,9 +28,9 @@ const Menuprincipal = () => {
         <div className="card-container">
           <Nav.Link  as={Link} to="/faspirante"><Card icon="🔄" text="ACT. DATOS" color="#4a90e2"/></Nav.Link>
           <Nav.Link  as={Link} to="/inscripcion"><Card icon="📝" text="INSCRIPCIÓN" color="#f5a623" /></Nav.Link>
-          <Nav.Link  as={Link} to="/postulacion"><Card icon="📝" text="POSTULACIÓN" color="#f5a623" /></Nav.Link>
-          <Nav.Link  as={Link} to="/matriculacion" disabled><Card icon="📝" text="MATRICULACIÓN" color="#f5a623" /></Nav.Link>
-          <Nav.Link  as={Link} to="/aceptacion" disabled><Card icon="📝" text="ACEPTACION" color="#f5a623" /></Nav.Link>
+          <Nav.Link  as={Link} to="/postulacion"><Card icon="📋" text="POSTULACIÓN" color="#f5a623" /></Nav.Link>
+          <Nav.Link  as={Link} to="/matriculacion" disabled><Card icon="📅" text="MATRICULACIÓN" color="#f5a623" /></Nav.Link>
+          <Nav.Link  as={Link} to="/aceptacion" disabled><Card icon="✅" text="ACEPTACION" color="#f5a623" /></Nav.Link>
         </div>
       </div>
   
