@@ -21,10 +21,10 @@ const Login = () => {
     e.preventDefault();
     /* console.log("Datos enviados:", formData); */
     const data = {
-      username: username,
+      email: username,
       password: password
     };
-    fetch("http://localhost:8088/api/login",{
+    fetch("https://localhost:7173/api/Auth/login",{
       method:'POST',
       Headers:{
           'Content-Type':'aplication/json'
