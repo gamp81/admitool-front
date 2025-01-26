@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import { step1ValidationSchema,step2ValidationSchema,CreacionCuentaValidate } from '../pages/utils/validateForm';
+
+import { step1ValidationSchema,step2ValidationSchema } from '../pages/utils/validateForm';
 const CrearCuenta = () => {
   const [step, setStep] = useState(1);
 
