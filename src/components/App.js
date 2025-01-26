@@ -2,7 +2,7 @@ import logo from '../logo.svg';
 import './App.css';
 
 import Header from './Header';
-import AppContent from './AppContent';
+
 import Pagerouter from '../router/pagerouter';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <div className="container-fluid">
         <div className="row">
           <div className="col">
-            <AppContent />
+           {/*  <AppContent /> */}
           </div>
         </div>
       </div>

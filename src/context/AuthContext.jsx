@@ -13,6 +13,7 @@ export const useAuth = () =>{
 export const AuthPovider = ({children}) => {
    /*  const [user,setUser]=useState(null); */
    const [isAuthenticated, setIsAuthenticated] = useState(false);
+   console.log("verifica isAuthenticated antes de useefect ");
     const [token, setToken] = useState(null);
 
     useEffect(() => {
@@ -28,6 +29,8 @@ export const AuthPovider = ({children}) => {
       localStorage.setItem("token", newToken);
       setToken(newToken);
       setIsAuthenticated(true);
+      console.log("verifica token en context ");
+      
     };
   
     const logout = () => {

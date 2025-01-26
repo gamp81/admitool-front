@@ -1,23 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import {useNavigate} from "react-router-dom"
 import "../style/crearcuenta.css";
-
+import { AuthContext } from "../context/AuthContext";
 const Login = () => {
+  const { login } = useContext(AuthContext);
   const [password,setPassword]= useState('');
   const [username,setUsername]= useState('');
   const navigate = useNavigate();
   const [loginSuccessful,setLoginsuccessful]=useState(false);
 
-  /* const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    
-  }); */
-
-  /* const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  }; */
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,8 +30,9 @@ const Login = () => {
       if (result.token){
         localStorage.setItem('token',result.token)
         setLoginsuccessful(true);
-        console.log("navega a menu");
-        navigate("/menu");
+        login();
+         console.log("navega a menu");
+        navigate("/menu"); 
       }else{
         setLoginsuccessful(false);
         alert("Credenciales incorrectas");
