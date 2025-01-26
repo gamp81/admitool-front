@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import "../style/crearcuenta.css";
 
 const Login = () => {
   const [password,setPassword]= useState('');
   const [username,setUsername]= useState('');
+  const navigate = useNavigate();
   const [loginSuccessful,setLoginsuccessful]=useState(false);
 
   /* const [formData, setFormData] = useState({
@@ -36,8 +38,11 @@ const Login = () => {
       if (result.token){
         localStorage.setItem('token',result.token)
         setLoginsuccessful(true);
+        console.log("navega a menu");
+        navigate("/menu");
       }else{
         setLoginsuccessful(false);
+        alert("Credenciales incorrectas");
       }
     }).catch(error=>{
       console.log(error)
