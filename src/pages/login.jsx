@@ -26,8 +26,8 @@ const Login = () => {
     };
     fetch("https://localhost:7173/api/Auth/login",{
       method:'POST',
-      Headers:{
-          'Content-Type':'aplication/json'
+      headers:{
+          'Content-Type':'application/json'
       },
       body: JSON.stringify(data)
     }).then(response=>response.json())
