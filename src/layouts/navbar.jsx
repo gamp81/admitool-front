@@ -17,13 +17,8 @@ const NavBar = () => {
                 <Nav.Link  as={Link} to="/register">Crear Cuenta</Nav.Link>            
               
                 <Nav.Link  as={Link} to="/menu">Menu</Nav.Link>
-               {/*   <Nav.Link  as={Link} to="/faspirante">Ficha</Nav.Link>*/}
-{/* 
-                <Nav.Link  as={Link} to="/fichaaspirante2">Ficha</Nav.Link>            
-                 */}
-                
-            
-                
+                <Nav.Link  as={Link} to="/logout">Logout</Nav.Link>
+         
             </Nav>
             </Navbar.Collapse>
         </Container>
