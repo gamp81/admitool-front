@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useContext(AuthContext);
-
+  console.log("muestra isAuthenticated:",isAuthenticated);
   if (!isAuthenticated) {
     // Redirigir al login si no está autenticado
     return <Navigate to="/login" />;
