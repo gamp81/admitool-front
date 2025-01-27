@@ -26,11 +26,11 @@ const Login = () => {
       body: JSON.stringify(data)
     }).then(response=>response.json())
     .then(result=>{
-      console.log(result.token)
+      /* console.log(result.token) */
       if (result.token){
         localStorage.setItem('token',result.token)
         setLoginsuccessful(true);
-        login();
+        login(result.token);
          console.log("navega a menu");
         navigate("/menu"); 
       }else{

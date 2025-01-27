@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import NavBarHeader from '../layouts/navbar';
 import Login from '../pages/login';
 import CrearCuenta from '../pages/crearcuenta';
-import Register from '../pages/register.tsx';
+import Register from '../pages/register.jsx';
 import Menu from '../pages/menuprincipal';
 import Carrera from '../pages/carreras';
 import Faspirante from '../pages/faspirante'
@@ -14,8 +14,8 @@ import { AuthPovider } from '../context/AuthContext';
 import ProtectedRoute from './ProtectedRoute.jsx';
 const Pagerouter = () =>{
     return (
-        <AuthPovider>
-            <BrowserRouter>
+        <AuthPovider future={{ v7_startTransition: true }}>
+            <BrowserRouter future={{ v7_startTransition: true }}>
             <Routes>
                 <Route path='/' element={ <NavBarHeader /> }>
                      <Route index element={ <WelcomeContent /> } /> 
