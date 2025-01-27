@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { arraycarreras } from "../data/carreras";
+import { arraycarreras } from "../data/datos";
 import "../style/carreras.css";
 import Alert from '@mui/material/Alert';
 //import InfoIcon from '@mui/icons-material/Info';

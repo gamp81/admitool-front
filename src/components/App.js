@@ -7,21 +7,11 @@ import Pagerouter from '../router/pagerouter';
 
 function App() {
   return (
- 
-      <div className="App">
-           
-      {/* <Header pageTitle="Frontend authenticated with JWT" logoSrc={logo} /> */}
-      <Pagerouter>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col">
-           {/*  <AppContent /> */}
-          </div>
-        </div>
-      </div>
+    /*  <div className="App"> */
+      <Pagerouter future={{ v7_startTransition: true }}>
       </Pagerouter>
      
-    </div>
+   /*  </div> */
       
   );
 }
