@@ -5,7 +5,7 @@ const Declaracion = () => {
     return (
         <>
         <p>
-        Yo, {user.nombre} ciudadano con número de identificación 0703178830, declaro voluntariamente que: </p>
+        Yo, {user.nombre} ciudadano con número de identificación {user.docId}, declaro voluntariamente que: </p>
         <li>1. Ser responsable del ingreso de toda la información sobre mi persona en la plataforma de inscripción de Adadémico Admisiones de ESPOL.</li>
 
         <li>2. Ser responsable exclusivo del uso de las credenciales de acceso a la plataforma de Académico Admisiones de ESPOL.</li>

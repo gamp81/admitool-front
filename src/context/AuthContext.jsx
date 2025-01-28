@@ -20,7 +20,15 @@ export const AuthPovider = ({children}) => {
       if (savedToken) {
         setToken(savedToken);
         setIsAuthenticated(true);
-      }
+        try {
+          // Decodificar el token para obtener información del usuario
+          const [, payload] = savedToken.split(".");
+          const decodedPayload = JSON.parse(atob(payload));
+          setUser(decodedPayload);
+        } catch (error) {
+          console.error("Error decoding token:", error);
+          logout(); // Cerrar sesión si el token es inválido
+        }}
     }, []);
   
     const login = (newToken) => {

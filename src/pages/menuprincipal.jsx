@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../style/menuprincipal.css";
 
-import { Navbar, Nav, Container,NavDropdown,Form,Button  } from "react-bootstrap"
-import { Outlet, Link } from "react-router-dom"
+import {  Nav  } from "react-bootstrap"
+import {  Link } from "react-router-dom"
 
 
 const Card = ({ icon, text, color }) => {
