@@ -1,11 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useContext} from 'react'
 import { arraycarreras } from "../data/datos";
 import "../style/carreras.css";
 import Alert from '@mui/material/Alert';
+import { AuthContext } from '../context/AuthContext';
+import { MdOutlineEngineering } from "react-icons/md";
+import { GrCloudComputer } from "react-icons/gr";
+import { PiPaintBrushFill } from "react-icons/pi";
+import { MdOutlineScience } from "react-icons/md";
+import { MdOutlineManageAccounts } from "react-icons/md";
 //import InfoIcon from '@mui/icons-material/Info';
 
 
 export default function Carrera() {
+  const {token}= useContext(AuthContext);
     const [checkedState, setCheckedState] = useState(
         new Array(arraycarreras.length).fill(false)
       );
@@ -18,10 +25,6 @@ export default function Carrera() {
         );
     
         setCheckedState(updatedCheckedState);
-    
-      
-    
-       
       };
       const sections = [
         {
@@ -49,45 +52,60 @@ export default function Carrera() {
         {
           title: 'CIENCIAS E INGENIERÍAS APLICADAS GRUPO I',
           color: '#007bff',
-          icon: 'ruta-del-icono-2.png',
+          icon: <GrCloudComputer/>,
           items: ['Computación', 'Logística y Transporte', 'Matemática', 'Mecatrónica','Telemática'],
         },
         {
           title: 'ARTE',
           color: '#e83e8c',
-          icon: 'ruta-del-icono-3.png',
+          icon: <PiPaintBrushFill/>,
           items: ['Diseño de Productos', 'Producción Medios de Comunicación', 'Diseño Gráfico'],
         },
         {
           title: 'EDUCACIÓN COMERCIAL',
           color: '#e83e8c',
-          icon: 'ruta-del-icono-3.png',
+          icon: <MdOutlineManageAccounts/>,
           items: ['Administración de Empresas', 'Auditoria y control de gestión', 'Economía'],
         },
         {
           title: 'INGENIERÍAS APLICADAS GRUPO II',
           color: '#e83e8c',
-          icon: 'ruta-del-icono-3.png',
+          icon: <MdOutlineScience/>,
           items: ['Administración de Empresas', 'Auditoria y control de gestión', 'Economía'],
         },
 
 
       ];
+      fetch("https://localhost:7198/api/Postulation/GetKnowledgeArea",{
+        method:'GET',
+        /* headers:{
+            'Content-Type':'application/json'
+        }, */
+        /* body: JSON.stringify(token) */
+      }).then(response=>response.json())
+      .then(result=>{
+        /* console.log(result.token) */
+           console.log("navega a menu",result);
+        
+      }).catch(error=>{
+        console.log(error)
+      })
       // Filtrar la primera sección
         const firstSection = sections.find(section => section.title === 'CIENCIAS E INGENIERÍAS');
        // Filtrar todas las secciones excepto la primera
             const otherSections = sections.filter((_, index) => index !== 0);
+          
       return (
         <div className="container">
         <Alert
-      //icon={<InfoIcon fontSize="inherit" />}
-      severity="info"
-      sx={{
-        backgroundColor: '#e0f7fa', // Fondo celeste
-        color: '#00796b', // Color del texto
-        '& .MuiAlert-icon': {
-          color: '#00796b', // Color del ícono
-        },
+          //icon={<InfoIcon fontSize="inherit" />}
+          severity="info"
+          sx={{
+            backgroundColor: '#e0f7fa', // Fondo celeste
+            color: '#00796b', // Color del texto
+            '& .MuiAlert-icon': {
+              color: '#00796b', // Color del ícono
+            },
       }}
     ><p><b>Información importante:</b> Podrás selección hasta tres carreras de una misma subárea de conocimiento durante esta etapa de inscripción. Las pruebas de conocimiento que rindas durante la etapa de evaluación de competencias y capacidades dependerán del perfil de evaluación de la carrera seleccionada. 
     Puedes obtener mas información sobre el perfil de evaluación y la oferta académica en el siguiente enlace: <a href='https://www.registrounicoedusup.gob.ec/'>bit.ly/4fknpa0</a>.
@@ -98,7 +116,8 @@ export default function Carrera() {
           <div className="header">
             <div className="icon">
               {/* Coloca aquí un ícono si tienes uno */}
-              <img src="ruta-del-icono.png" alt="icono" />
+             {/*  <img src="ruta-del-icono.png" alt="icono" /> */}
+             <MdOutlineEngineering />
             </div>
             <h3 className="title">CIENCIAS E INGENIERÍAS</h3>
           </div>
@@ -117,7 +136,7 @@ export default function Carrera() {
           <div key={index} className="section" style={{ borderColor: section.color }}>
             <div className="header">
               <div className="icon" style={{ backgroundColor: section.color }}>
-                <img src={section.icon} alt="icono" />
+                {section.icon} 
               </div>
               <h3 className="title" style={{ color: section.color }}>
                 {section.title}
