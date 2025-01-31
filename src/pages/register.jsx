@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-
+import {useNavigate} from "react-router-dom"
 import { step1ValidationSchema,step2ValidationSchema } from '../pages/utils/validateForm';
 const CrearCuenta = () => {
   const [step, setStep] = useState(1);
-
+  const navigate = useNavigate();
   // Esquemas de validación con Yup
   /* const step1ValidationSchema = Yup.object({
     identificacion: Yup.string()
@@ -32,10 +32,10 @@ const CrearCuenta = () => {
   // Formik para paso 1
   const formikStep1 = useFormik({
     initialValues: {
-      tipoIdentificacion: "Cédula",
-      identificacion: "",
-      nombres: "",
-      apellidoPaterno: "",
+      IdentificationType: "Cédula",
+      Identification: "",
+      Name: "",
+      LastName: "",
       apellidoMaterno: "",
       sexo: "",
       fechaNacimiento: "",
@@ -50,13 +50,28 @@ const CrearCuenta = () => {
   const formikStep2 = useFormik({
     initialValues: {
       email: "",
-      contrasena: "",
+      password: "",
     },
     validationSchema: step2ValidationSchema,
     onSubmit: (values) => {
       const allData = { ...formikStep1.values, ...values };
       console.log("Datos enviados:", allData);
-      alert("Registro completado.");
+      //alert("Registro completado.");
+      fetch("https://localhost:7173/api/Auth/CreateAccount",{
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(allData)
+      })//.then(response=>response.JSON() )
+      .then(result=>{
+        console.log('resultado',result);
+        navigate("/login");
+
+      })
+      .catch(error=>{
+        console.log(error);
+      });
     },
   });
 
@@ -70,8 +85,8 @@ const CrearCuenta = () => {
               <label>
                 Tipo Identificación
                 <select
-                  name="tipoIdentificacion"
-                  value={formikStep1.values.tipoIdentificacion}
+                  name="IdentificationType"
+                  value={formikStep1.values.IdentificationType}
                   onChange={formikStep1.handleChange}
                 >
                   <option value="CED">Cédula</option>
@@ -82,39 +97,39 @@ const CrearCuenta = () => {
                 Ingrese su número de cédula
                 <input
                   type="text"
-                  name="identificacion"
-                  value={formikStep1.values.identificacion}
+                  name="Identification"
+                  value={formikStep1.values.Identification}
                   onChange={formikStep1.handleChange}
                   onBlur={formikStep1.handleBlur}
                 />
-                {formikStep1.touched.identificacion && formikStep1.errors.identificacion && (
-                  <div className="error">{formikStep1.errors.identificacion}</div>
+                {formikStep1.touched.Identification && formikStep1.errors.Identification && (
+                  <div className="error">{formikStep1.errors.Identification}</div>
                 )}
               </label>
               <label>
                 Ingrese sus nombres
                 <input
                   type="text"
-                  name="nombres"
-                  value={formikStep1.values.nombres}
+                  name="Name"
+                  value={formikStep1.values.Name}
                   onChange={formikStep1.handleChange}
                   onBlur={formikStep1.handleBlur}
                 />
-                {formikStep1.touched.nombres && formikStep1.errors.nombres && (
-                  <div className="error">{formikStep1.errors.nombres}</div>
+                {formikStep1.touched.Name && formikStep1.errors.Name && (
+                  <div className="error">{formikStep1.errors.Name}</div>
                 )}
               </label>
               <label>
                 Ingrese su apellido paterno
                 <input
                   type="text"
-                  name="apellidoPaterno"
-                  value={formikStep1.values.apellidoPaterno}
+                  name="LastName"
+                  value={formikStep1.values.LastName }
                   onChange={formikStep1.handleChange}
                   onBlur={formikStep1.handleBlur}
                 />
-                {formikStep1.touched.apellidoPaterno && formikStep1.errors.apellidoPaterno && (
-                  <div className="error">{formikStep1.errors.apellidoPaterno}</div>
+                {formikStep1.touched.LastName  && formikStep1.errors.LastName  && (
+                  <div className="error">{formikStep1.errors.LastName }</div>
                 )}
               </label>
               <label>
@@ -193,13 +208,13 @@ const CrearCuenta = () => {
                 Ingrese su contraseña
                 <input
                   type="password"
-                  name="contrasena"
-                  value={formikStep2.values.contrasena}
+                  name="password"
+                  value={formikStep2.values.password}
                   onChange={formikStep2.handleChange}
                   onBlur={formikStep2.handleBlur}
                 />
-                {formikStep2.touched.contrasena && formikStep2.errors.contrasena && (
-                  <div className="error">{formikStep2.errors.contrasena}</div>
+                {formikStep2.touched.password && formikStep2.errors.password && (
+                  <div className="error">{formikStep2.errors.password}</div>
                 )}
               </label>
               <div className="form-buttons">

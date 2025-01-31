@@ -5,12 +5,12 @@ export const LoginValidate = yup.object().shape({
     password: yup.string().trim().required("La contraseña es requerida"),
 });
 export const step1ValidationSchema = yup.object({
-    identificacion: yup.string()
+  Identification: yup.string()
       .required("El número de cédula es obligatorio.")
       .matches(/^\d+$/, "Solo se permiten números.")
       .min(10, "El número de cédula debe tener al menos 10 dígitos."),
-    nombres: yup.string().required("Los nombres son obligatorios."),
-    apellidoPaterno: yup.string().required("El apellido paterno es obligatorio."),
+    Name: yup.string().required("Los nombres son obligatorios."),
+    LastName: yup.string().required("El apellido paterno es obligatorio."),
     apellidoMaterno: yup.string().required("El apellido materno es obligatorio."),
     sexo: yup.string().required("El sexo es obligatorio."),
     fechaNacimiento: yup.date()
@@ -22,13 +22,13 @@ export const step1ValidationSchema = yup.object({
     email: yup.string()
       .email("Debe ser un correo válido.")
       .required("El correo es obligatorio."),
-    contrasena: yup.string()
+    password: yup.string()
       .required("La contraseña es obligatoria.")
       .min(6, "La contraseña debe tener al menos 6 caracteres."),
   });
 export const CreacionCuentaValidate = yup.object().shape({
-    tipoidentificacion: yup.string().trim().required("Debe seleccionar un tipo de identificacion no puede quedar vacio"),
-    identificacion: yup.string().trim().required("La identificación es requerida")
+  IdentificationType: yup.string().trim().required("Debe seleccionar un tipo de identificacion no puede quedar vacio"),
+    Identification: yup.string().trim().required("La identificación es requerida")
         .test('validar-identificacion', 'Identificación no válida', function (value) {
             const tipoidentificacion = this.parent.tipoidentificacion;
             if (!value) return false; // Si el valor es nulo, no es válido
