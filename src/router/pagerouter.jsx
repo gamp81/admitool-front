@@ -5,7 +5,7 @@ import Login from '../pages/login';
 import CrearCuenta from '../pages/crearcuenta';
 import Register from '../pages/register.jsx';
 import Menu from '../pages/menuprincipal';
-import Carrera from '../pages/carreras';
+import Carrera from '../pages/carreras2';
 import Faspirante from '../pages/faspirante'
 import WelcomeContent from '../components/WelcomeContent'
 import Postulacion from '../pages/postulacion';

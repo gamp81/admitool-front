@@ -1,5 +1,5 @@
 import React, {useState, useEffect,useContext} from 'react'
-import { arraycarreras } from "../data/datos";
+
 import "../style/carreras.css";
 import Alert from '@mui/material/Alert';
 import { AuthContext } from '../context/AuthContext';
@@ -9,23 +9,12 @@ import { PiPaintBrushFill } from "react-icons/pi";
 import { MdOutlineScience } from "react-icons/md";
 import { MdOutlineManageAccounts } from "react-icons/md";
 //import InfoIcon from '@mui/icons-material/Info';
-
+import CatalogoService from '../services/CatalogoService';
 
 export default function Carrera() {
-  const {token}= useContext(AuthContext);
-    const [checkedState, setCheckedState] = useState(
-        new Array(arraycarreras.length).fill(false)
-      );
-    
-      const [total, setTotal] = useState(0);
-    
-      const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-          index === position ? !item : item
-        );
-    
-        setCheckedState(updatedCheckedState);
-      };
+ 
+  const [data,setData] = useState(null)
+   
       const sections = [
         {
             title: 'CIENCIAS E INGENIERÍAS',
@@ -76,28 +65,37 @@ export default function Carrera() {
 
 
       ];
-      fetch("https://localhost:7198/api/Postulation/GetKnowledgeArea",{
-        method:'GET',
-        /* headers:{
-            'Content-Type':'application/json'
-        }, */
-        /* body: JSON.stringify(token) */
-      }).then(response=>response.json())
-      .then(result=>{
-        /* console.log(result.token) */
-           console.log("navega a menu",result);
-        
-      }).catch(error=>{
-        console.log(error)
-      })
+      useEffect(() => {
+        fetch("https://localhost:7198/api/Postulation/GetKnowledgeArea", {
+          method: 'GET',
+        })
+        .then(response => response.json())
+        .then(result => {
+          console.log("traido del api ", result);
+          setData(result);
+        })
+        .catch(error => {
+          console.log("Error al obtener los datos:", error);
+        })
+        .finally(() => {
+          console.log("final del api stop");
+        });
+      }, []); // <- Dependencia vacía para que solo se ejecute una vez
+      console.log("traido del api fuera",data);
+      //console.log("traido del api obtenerAreasConocimiento",CatalogoService.obtenerAreasConocimiento());
+      
+
       // Filtrar la primera sección
         const firstSection = sections.find(section => section.title === 'CIENCIAS E INGENIERÍAS');
-       // Filtrar todas las secciones excepto la primera
+        const firstSection1 = data?.find(section => section.name === 'CIENCIAS E INGENIERÍAS');
+        //console.log("traido del firstSection1",firstSection1);
+        // Filtrar todas las secciones excepto la primera
             const otherSections = sections.filter((_, index) => index !== 0);
-          
+            const otherSections1 = data?.filter((_, index) => index !== 0);
+            //console.log("traido del otherSections1",otherSections1);
       return (
         <div className="container">
-        <Alert
+       {/*  <Alert
           //icon={<InfoIcon fontSize="inherit" />}
           severity="info"
           sx={{
@@ -107,10 +105,11 @@ export default function Carrera() {
               color: '#00796b', // Color del ícono
             },
       }}
-    ><p><b>Información importante:</b> Podrás selección hasta tres carreras de una misma subárea de conocimiento durante esta etapa de inscripción. Las pruebas de conocimiento que rindas durante la etapa de evaluación de competencias y capacidades dependerán del perfil de evaluación de la carrera seleccionada. 
+    > */}
+      <p><b>Información importante:</b> Podrás selección hasta tres carreras de una misma subárea de conocimiento durante esta etapa de inscripción. Las pruebas de conocimiento que rindas durante la etapa de evaluación de competencias y capacidades dependerán del perfil de evaluación de la carrera seleccionada. 
     Puedes obtener mas información sobre el perfil de evaluación y la oferta académica en el siguiente enlace: <a href='https://www.registrounicoedusup.gob.ec/'>bit.ly/4fknpa0</a>.
       </p>
-    </Alert>
+   {/*  </Alert> */}
   
         <div className="table-container">
           <div className="header">
@@ -122,33 +121,34 @@ export default function Carrera() {
             <h3 className="title">CIENCIAS E INGENIERÍAS</h3>
           </div>
           <div className="grid">
-            {firstSection.items.map((item, index) => (
-              <label key={index} className="grid-item">
-              <input type="checkbox" />
-                {item}
-              </label>
-            ))}
+            {firstSection1?.professionalCareers.map((item, index) => (
+                <label key={index} className="grid-item">
+                <input type="checkbox" />
+                  {item.name}
+                </label>
+              ))} 
+
           </div>
      
         </div>
         <div className="sections-container">
-          {otherSections.map((section, index) => (
+          {otherSections1?.map((section, index) => (
           <div key={index} className="section" style={{ borderColor: section.color }}>
             <div className="header">
               <div className="icon" style={{ backgroundColor: section.color }}>
                 {section.icon} 
               </div>
               <h3 className="title" style={{ color: section.color }}>
-                {section.title}
+                {section.name}
               </h3>
             </div>
             <div className="grid2">
-              {section.items.map((item, idx) => (
+             {section.professionalCareers.map((item, idx) => (
               <label key={idx} className="grid-item">
                 <input type="checkbox" />
-                {item}
+                {item.name}
               </label>
-              ))}
+              ))} 
             </div>
           </div>
       ))}
