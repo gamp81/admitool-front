@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../style/Tabs.css";
 import DatosPersonales from './datospersonales';
 import Declaracion from "../components/declaracion";
-import Documentacion from "./documentacion";
+import Documentacion from "./documentacion2";
 import '../style/Tabs.css';
 import Alert from '@mui/material/Alert';
 import InfoAcademica from "./infoacademica";
