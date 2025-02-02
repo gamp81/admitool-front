@@ -10,12 +10,11 @@ import Faspirante from '../pages/faspirante'
 import WelcomeContent from '../components/WelcomeContent'
 import Postulacion from '../pages/postulacion';
 import Logoutbutton from '../components/logout.jsx'
-import { AuthPovider } from '../context/AuthContext';
 import ProtectedRoute from './ProtectedRoute.jsx';
 const Pagerouter = () =>{
     return (
-        <AuthPovider future={{ v7_startTransition: true }}>
-            <BrowserRouter future={{ v7_startTransition: true }}>
+       
+        <BrowserRouter future={{ v7_startTransition: true }}>
             <Routes>
                 <Route path='/' element={ <NavBarHeader /> }>
                      <Route index element={ <WelcomeContent /> } /> 
@@ -44,7 +43,7 @@ const Pagerouter = () =>{
                 </Route>
             </Routes> 
             </BrowserRouter>
-        </AuthPovider>
+       
         
 
     )

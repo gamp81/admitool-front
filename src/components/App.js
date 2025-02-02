@@ -1,17 +1,15 @@
-import logo from '../logo.svg';
+
 import './App.css';
-
-import Header from './Header';
-
+import Footer from '../layouts/footer';
+import { AuthPovider } from '../context/AuthContext';
 import Pagerouter from '../router/pagerouter';
 
 function App() {
   return (
-    /*  <div className="App"> */
-      <Pagerouter future={{ v7_startTransition: true }}>
-      </Pagerouter>
-     
-   /*  </div> */
+    <AuthPovider future={{ v7_startTransition: true }}>
+      <Pagerouter ></Pagerouter>
+      <Footer/>
+    </AuthPovider>
       
   );
 }
