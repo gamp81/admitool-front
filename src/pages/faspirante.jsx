@@ -28,9 +28,10 @@ const Faspirante = () => {
 
   return (
     <>
-    <div className="tabs-container">
+
+    <div className="container">
       {/* Encabezado de las pestañas */}
-      <Alert
+      <Alert className="message"
               //icon={<InfoIcon fontSize="inherit" />}
               severity="info"
               sx={{
