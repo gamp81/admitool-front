@@ -66,6 +66,7 @@ const CrearCuenta = () => {
       })//.then(response=>response.JSON() )
       .then(result=>{
         console.log('resultado',result);
+        alert("Registro completado.");
         navigate("/login");
 
       })

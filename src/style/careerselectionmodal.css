@@ -1,0 +1,39 @@
+.space-y-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .career-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .priority-button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .priority-button.blue {
+    background-color: #2563eb;
+  }
+  
+  .priority-button.gray {
+    background-color: #d1d5db;
+  }
+  
+  .priority-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
