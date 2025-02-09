@@ -1,0 +1,57 @@
+
+.card1 {
+  
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.priority p {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.priority span {
+  font-weight: bold;
+}
+
+.subtitle {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.exam {
+  font-size: 14px;
+  margin: 5px 0 15px;
+}
+
+.download-btn {
+  background: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.download-btn i {
+  margin-left: 8px;
+}
+
+.download-btn:hover {
+  background: #1a252f;
+}

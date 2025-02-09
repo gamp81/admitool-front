@@ -9,16 +9,29 @@ import { PiPaintBrushFill } from "react-icons/pi";
 import { MdOutlineScience } from "react-icons/md";
 import { MdOutlineManageAccounts } from "react-icons/md";
 //import InfoIcon from '@mui/icons-material/Info';
-import CatalogoService from '../services/CatalogoService';
+
+import CareerSelectionModal from '../components/CareerSelectionModal';
+
+import { useNavigate } from 'react-router-dom';
 
 export default function Carrera() {
-  const { user } = useContext(AuthContext);
+  const { user,token } = useContext(AuthContext);
   const [data, setData] = useState(null);
   const [selectedCareers, setSelectedCareers] = useState([]);
   const [selectedAreaId, setSelectedAreaId] = useState(null); // Área de conocimiento seleccionada
-
+  const [nameArea, setNameArea] = useState(null); 
+  const [openModal, setOpenModal] = useState(false);
+ 
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch("https://localhost:7198/api/Postulation/GetKnowledgeArea")
+    console.log("Enviando token:", token);
+    fetch("https://localhost:7198/api/Inscription/GetKnowledgeArea", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // Se agrega el token en el encabezado
+      }
+    })
       .then(response => response.json())
       .then(result => {
         console.log("obtener los datos:", result)
@@ -26,7 +39,7 @@ export default function Carrera() {
       .catch(error => console.log("Error al obtener los datos:", error));
   }, []);
 
-  const handleCheckboxChange = (careerId, areaId) => {
+  const handleCheckboxChange = (careerId, areaId,careerName,areaName) => {
     setSelectedCareers((prev) => {
       if (prev.some(career => career.careerId === careerId)) {
         const newSelection = prev.filter(career => career.careerId !== careerId);
@@ -36,7 +49,8 @@ export default function Carrera() {
         return newSelection;
       } else if (prev.length < 3 && (selectedAreaId === null || selectedAreaId === areaId)) {
         setSelectedAreaId(areaId);
-        return [...prev, { careerId, order: prev.length + 1 }];
+        setNameArea(areaName);
+        return [...prev, { careerId, order: prev.length + 1, careerName }];
       }
       return prev;
     });
@@ -49,22 +63,30 @@ export default function Carrera() {
     }
 
     const payload = {
-      userId: user?.usrId || 0,
+      PostulanteId: parseInt(user?.usrId) || 0,
       areaId: selectedAreaId,
       options: selectedCareers
     };
 
     console.log("Enviando datos:", payload);
-
+    
     try {
-      const response = await fetch("https://localhost:7198/api/Postulation/SaveApplication", {
+      const response = await fetch("https://localhost:7198/api/Inscription/SaveApplication", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+         },
         body: JSON.stringify(payload),
       });
 
       if (response.ok) {
+        const data = await response.json(); 
+    
+        console.log("listData:", data.listData); // Mostrar listData en consola
         alert("Selección enviada con éxito.");
+        
+        navigate("/inscripcionend",{state:{careers:selectedCareers,areaId: selectedAreaId, area:nameArea,lista:data.listData,registrationId:data.id }})
+
       } else {
         alert("Error al enviar la selección.");
       }
@@ -101,7 +123,7 @@ export default function Carrera() {
                     <input
                       type="checkbox"
                       checked={selectedCareers.some(career => career.careerId === item.id)}
-                      onChange={() => handleCheckboxChange(item.id, section.id)}
+                      onChange={() => handleCheckboxChange(item.id, section.id,item.name,section.name)}
                       disabled={
                         (selectedCareers.length >= 3 && !selectedCareers.some(career => career.careerId === item.id)) ||
                         (selectedAreaId !== null && selectedAreaId !== section.id)
@@ -117,9 +139,23 @@ export default function Carrera() {
   
         {/* Botón de Aceptar */}
         <div className="containerbutton">
-          <button className="button" disabled={selectedCareers.length === 0} onClick={handleSubmit}>
+         {/*  <button className="button" disabled={selectedCareers.length === 0} onClick={handleSubmit}>
             Aceptar ({selectedCareers.length}/3 seleccionadas)
-          </button>
+          </button> */}
+           {/* Botón para abrir el modal */}
+      <button className="button" onClick={() => setOpenModal(true)}>
+        Aceptar
+      </button>
+
+      {/* Modal para definir prioridades */}
+      <CareerSelectionModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        selectedCareers={selectedCareers}
+        setSelectedCareers={setSelectedCareers}
+        onSubmit={handleSubmit}
+      />
+          
         </div>
       </div>
       );
