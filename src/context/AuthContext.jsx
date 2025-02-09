@@ -1,13 +1,13 @@
 import { createContext, useState, useContext,useEffect} from 'react';
 
-export const AuthContext =  createContext();
-export const useAuth = () =>{
+/*  */export const AuthContext =  createContext();
+/* export const useAuth = () =>{
     const context = useContext(AuthContext);
     if (!context) {
         throw new Error('useAuth musst be used within a AuthProvider')
     }
     return context;
-};
+}; */
 export const AuthPovider = ({children}) => {
     const [user,setUser]=useState({});
    const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,7 +40,7 @@ export const AuthPovider = ({children}) => {
 
       // Decodificar el payload (segunda parte) de Base64
       const decodedPayload = JSON.parse(atob(payload));
-      console.log(decodedPayload.nombre);
+      console.log(decodedPayload);
       setUser(decodedPayload);
       console.log("verifica token en context ");
       

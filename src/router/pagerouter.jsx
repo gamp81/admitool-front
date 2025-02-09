@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import NavBarHeader from '../layouts/navbar';
 import Login from '../pages/login';
-import CrearCuenta from '../pages/crearcuenta';
+
 import Register from '../pages/register.jsx';
 import Menu from '../pages/menuprincipal';
 import Carrera from '../pages/carreras2';
