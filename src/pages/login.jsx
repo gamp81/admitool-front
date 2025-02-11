@@ -28,11 +28,11 @@ const Login = () => {
               body: JSON.stringify(data)
             }).then(response=>response.json())
             .then(result=>{
-              /* console.log(result.token) */
-              if (result.token){
-                localStorage.setItem('token',result.token)
+              console.log(" data traida  ",result.data.token) 
+              if (result.data.token){
+                localStorage.setItem('token',result.data.token)
                 setLoginsuccessful(true);
-                login(result.token);
+                login(result.data.token);
                  console.log("navega a menu");
                 navigate("/menu"); 
               }else{
