@@ -34,8 +34,8 @@ export default function Carrera() {
     })
       .then(response => response.json())
       .then(result => {
-        console.log("obtener los datos:", result)
-        setData(result)})
+        console.log("obtener los datos:", result.listData)
+        setData(result.listData)})
       .catch(error => console.log("Error al obtener los datos:", error));
   }, []);
 
@@ -82,10 +82,11 @@ export default function Carrera() {
       if (response.ok) {
         const data = await response.json(); 
     
-        console.log("listData:", data.listData); // Mostrar listData en consola
+        console.log("listData:  ", data.data.listData); // Mostrar listData en consola
+        console.log("response:  ", data); 
         alert("Selección enviada con éxito.");
         
-        navigate("/inscripcionend",{state:{careers:selectedCareers,areaId: selectedAreaId, area:nameArea,lista:data.listData,registrationId:data.id }})
+        navigate("/inscripcionend",{state:{careers:selectedCareers,areaId: selectedAreaId, area:nameArea,lista:data.data.listData,registrationId:data.data.id }})
 
       } else {
         alert("Error al enviar la selección.");
