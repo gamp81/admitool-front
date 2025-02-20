@@ -9,10 +9,12 @@ import Carrera from '../pages/carreras2';
 import Faspirante from '../pages/faspirante'
 import WelcomeContent from '../components/WelcomeContent'
 import Postulacion from '../pages/postulacion';
-import Logoutbutton from '../components/logout.jsx'
+import Logoutbutton from '../components/logout.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Inscription from '../components/inscripcionDownload.jsx';
-import RecoverPassword from '../pages/recuperarcuenta.jsx'
+import RecoverPassword from '../pages/recuperarcuenta.jsx';
+import AdminAreaLista from '../pages/admin/area/lista.jsx';
+import AdminAreaCrear from '../pages/admin/area/create.jsx'
 const Pagerouter = () =>{
     return (
        
@@ -42,6 +44,9 @@ const Pagerouter = () =>{
                  
                    
                     <Route path='logout' element={ <Logoutbutton /> } />
+
+                    <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
+                    <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
                     <Route path='*' element={ <Navigate replace to="/"/> }/>
                   
                 </Route>

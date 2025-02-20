@@ -61,3 +61,7 @@ export const RecuperarCuentaValidate = yup.object().shape({
     tipoidentificacion: yup.string().trim().required("El correo no puede quedar vacio"),
     pas: yup.string().trim().required("La contraseña es requerida"),
 });
+export const AreaConocimiento = yup.object().shape({
+  nombre: yup.string().required("El nombre es obligatorio."),
+  descripcion: yup.string().required("La descripcion es obligatoria."),
+});
