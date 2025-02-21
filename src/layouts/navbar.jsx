@@ -3,6 +3,7 @@ import { Outlet, Link } from "react-router-dom"
 import React, { useContext } from "react";
 import logo from '../logo.svg';
 import { AuthContext } from "../context/AuthContext";
+import rolesConfig from "../config/rolesConfig";
 const NavBar = () => {
     const { logout,isAuthenticated,user } = useContext(AuthContext);
     return(
@@ -14,7 +15,7 @@ const NavBar = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/" >Inicio</Nav.Link>
-                    {isAuthenticated &&  (<Nav.Link  as={Link} to="/menu">Menu</Nav.Link>)} 
+                    {isAuthenticated && rolesConfig[user.role]?.includes("/menu") && (<Nav.Link  as={Link} to="/menu">Menu</Nav.Link>)} 
                     
                 
                 </Nav>

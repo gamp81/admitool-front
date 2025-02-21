@@ -13,6 +13,7 @@ import Logoutbutton from '../components/logout.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Inscription from '../components/inscripcionDownload.jsx';
 import RecoverPassword from '../pages/recuperarcuenta.jsx';
+import MenuAdmin from '../pages/admin/menuAdmin.jsx';
 import AdminAreaLista from '../pages/admin/area/lista.jsx';
 import AdminAreaCrear from '../pages/admin/area/create.jsx'
 const Pagerouter = () =>{
@@ -25,26 +26,29 @@ const Pagerouter = () =>{
                     <Route path='login' element={ <Login /> } /> 
                     <Route path='register' element={ <Register/> } /> 
                     <Route path='RecoverPassword' element={ <RecoverPassword/> } /> 
-                    <Route path='menu' element={ 
-                         <ProtectedRoute> <Menu/> </ProtectedRoute>
-                     } /> 
-                   
-                    <Route path='inscripcion' element={ 
-                        <ProtectedRoute><Carrera /></ProtectedRoute> } 
-                        />
-                     <Route path='inscripcionend' element={ 
-                        <ProtectedRoute><Inscription /></ProtectedRoute> } 
-                        />
-                    <Route path='postulacion' element={ 
-                        <ProtectedRoute><Postulacion /> </ProtectedRoute>
-                        } />
-                    <Route path='faspirante' element={ 
-                        <ProtectedRoute><Faspirante /> </ProtectedRoute>
-                        } />
+                    
+                    <Route element={<ProtectedRoute allowedRoles={["/menu"]} />}>
+                        <Route path='menu' element={<Menu/>} /> 
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["/inscripcion"]} />}>
+                        <Route path='inscripcion' element={<Carrera/>} /> 
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["/faspirante"]} />}>
+                        <Route path='faspirante' element={<Faspirante/>} />
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["/inscripcionend"]} />}>
+                        <Route path='inscripcionend' element={<Inscription/>} />
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["/postulacion"]} />}>
+                        <Route path='postulacion' element={<Postulacion/>} />
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["/menuAdmin"]} />}>
+                      
+                    </Route>
+                                                           
                  
-                   
                     <Route path='logout' element={ <Logoutbutton /> } />
-
+                    <Route path='menuAdmin' element={<MenuAdmin/>} />
                     <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
                     <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
                     <Route path='*' element={ <Navigate replace to="/"/> }/>

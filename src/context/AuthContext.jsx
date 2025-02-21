@@ -1,18 +1,19 @@
 import { createContext, useState, useContext,useEffect} from 'react';
 
 /*  */export const AuthContext =  createContext();
-/* export const useAuth = () =>{
+export const useAuth = () =>{
     const context = useContext(AuthContext);
     if (!context) {
         throw new Error('useAuth musst be used within a AuthProvider')
     }
     return context;
-}; */
+};
 export const AuthPovider = ({children}) => {
     const [user,setUser]=useState({});
    const [isAuthenticated, setIsAuthenticated] = useState(false);
    console.log("verifica isAuthenticated antes de useefect ");
     const [token, setToken] = useState(null);
+    const [role, setRole] = useState(null);
 
     useEffect(() => {
       // Cargar el token desde localStorage al cargar la app
@@ -40,7 +41,7 @@ export const AuthPovider = ({children}) => {
 
       // Decodificar el payload (segunda parte) de Base64
       const decodedPayload = JSON.parse(atob(payload));
-      console.log(decodedPayload);
+      console.log('descriptar token',decodedPayload);
       setUser(decodedPayload);
       console.log("verifica token en context ");
       

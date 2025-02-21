@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useFormik } from "formik";
 import { step2ValidationSchema } from '../pages/utils/validateForm';
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
   const [password,setPassword]= useState('');
   const [username,setUsername]= useState('');
   const navigate = useNavigate();
@@ -34,7 +34,12 @@ const Login = () => {
                 setLoginsuccessful(true);
                 login(result.data.token);
                  console.log("navega a menu");
-                navigate("/menu"); 
+                 if (user.role==="ADMINISTRADOR") {
+                  navigate("/AdminAreaCrear"); 
+                 }else{
+                  navigate("/menu"); 
+                 }
+               
               }else{
                 setLoginsuccessful(false);
                 alert("Credenciales incorrectas");
