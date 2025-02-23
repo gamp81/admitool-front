@@ -17,7 +17,7 @@ const NavBar = () => {
                     <Nav.Link as={Link} to="/" >Inicio</Nav.Link>
                     {isAuthenticated && rolesConfig[user.role]?.includes("/menu") && (<Nav.Link  as={Link} to="/menu">Menu</Nav.Link>)} 
                     
-                
+                    <Nav.Link as={Link} to="/menuadmin" >Administrador</Nav.Link>
                 </Nav>
                     {/* Elemento del usuario a la derecha */}
                 <Nav className="ms-auto">

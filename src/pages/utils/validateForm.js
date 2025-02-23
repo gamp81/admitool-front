@@ -65,3 +65,9 @@ export const AreaConocimiento = yup.object().shape({
   nombre: yup.string().required("El nombre es obligatorio."),
   descripcion: yup.string().required("La descripcion es obligatoria."),
 });
+
+export const ProgramaAcademico = yup.object().shape({
+  nombre: yup.string().required("El nombre es obligatorio."),
+  descripcion: yup.string().required("La descripcion es obligatoria."),
+  modalidad: yup.string().required("La descripcion es obligatoria."),
+});

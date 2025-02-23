@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTable } from "react-table";
-import "../../../style/areas.css"
+import "../../../style/vistasAdmin.css"
 import CrearArea from '../area/create';
 
 const AcademicTable = () => {
@@ -70,12 +70,12 @@ const handleDelete = (row) => {
         <button className="nuevo"  onClick={()=>setOpenModal(true)}>Nueva Area</button>  
         <CrearArea open={openModal} onClose={()=>setOpenModal(false)} onAreaCreated={handleNewArea} />
       </div>
-      <table {...getTableProps()} border="1" className="tableCrear">
+      <table {...getTableProps()} border="1" className="tableLista">
             <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps()} className="tableCrear">
+                            <th {...column.getHeaderProps()} className="tableLista">
                                 {column.render("Header")}
                             </th>
                         ))}

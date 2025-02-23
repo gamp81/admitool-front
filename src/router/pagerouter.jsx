@@ -16,6 +16,7 @@ import RecoverPassword from '../pages/recuperarcuenta.jsx';
 import MenuAdmin from '../pages/admin/menuAdmin.jsx';
 import AdminAreaLista from '../pages/admin/area/lista.jsx';
 import AdminAreaCrear from '../pages/admin/area/create.jsx'
+import AdminProgramas from '../pages/admin/programa/listaprograma.jsx'
 const Pagerouter = () =>{
     return (
        
@@ -49,6 +50,7 @@ const Pagerouter = () =>{
                  
                     <Route path='logout' element={ <Logoutbutton /> } />
                     <Route path='menuAdmin' element={<MenuAdmin/>} />
+                    <Route path='AdminProgramas' element={<AdminProgramas/>} />
                     <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
                     <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
                     <Route path='*' element={ <Navigate replace to="/"/> }/>
