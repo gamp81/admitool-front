@@ -1,0 +1,111 @@
+
+/* .form-buttons {
+    
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 20px; */
+  /*   justify-content: center; */
+   /*  align-items: center; */
+  /*  gap: "10px";
+  } */ 
+  /* .form-buttons2 {
+    
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    
+  } */
+  .modificar{
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+  }
+  .nuevo{
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+  }
+  .eliminar{
+    background: #ff1100;
+    color: #fff; 
+    padding: "5px 10px";
+    border: "none";
+    cursor: "pointer";
+    border-radius: 5px;
+  }
+ /*  button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="button"] {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+  } */
+  
+ /*  button:hover {
+    opacity: 0.9;
+  } */
+/* 
+  .tableCrear{
+    border-collapse: collapse;
+    overflow-x:auto;
+    width: "100%";
+   /*  border: 1px solid #000; */
+    /* borderCollapse: "collapse"; */
+ /*  }
+  .tableCrear th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    
+  } */ 
+  .tableCrear {
+    
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    table-layout: fixed;
+}
+
+.tableCrear th, 
+.tableCrear td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.tableCrear thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.tableCrear tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tableCrear tbody tr:hover {
+    background-color: #ddd;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.tableCrear th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tableCrear td {
+    color: #333;
+}
