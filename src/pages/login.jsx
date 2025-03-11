@@ -28,14 +28,14 @@ const Login = () => {
               body: JSON.stringify(data)
             }).then(response=>response.json())
             .then(result=>{
-              console.log(" data traida  ",result.data.token) 
+              //console.log(" data traida  ",result.data.token) 
               if (result.data.token){
                 localStorage.setItem('token',result.data.token)
                 setLoginsuccessful(true);
                 login(result.data.token);
-                 console.log("navega a menu");
+                 console.log("navega a menu",user );
                  if (user.role==="ADMINISTRADOR") {
-                  navigate("/AdminAreaCrear"); 
+                  navigate("/menuadmin"); 
                  }else{
                   navigate("/menu"); 
                  }

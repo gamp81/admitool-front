@@ -43,16 +43,17 @@ const Pagerouter = () =>{
                     <Route element={<ProtectedRoute allowedRoles={["/postulacion"]} />}>
                         <Route path='postulacion' element={<Postulacion/>} />
                     </Route>
-                    <Route element={<ProtectedRoute allowedRoles={["/menuAdmin"]} />}>
-                      
+                    <Route element={<ProtectedRoute allowedRoles={["/menuadmin"]} />}>
+                        <Route path='menuadmin' element={<MenuAdmin/>} />
+                        <Route path='AdminProgramas' element={<AdminProgramas/>} />
+                        <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
+                        <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
                     </Route>
                                                            
                  
                     <Route path='logout' element={ <Logoutbutton /> } />
-                    <Route path='menuAdmin' element={<MenuAdmin/>} />
-                    <Route path='AdminProgramas' element={<AdminProgramas/>} />
-                    <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
-                    <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
+                  
+                   
                     <Route path='*' element={ <Navigate replace to="/"/> }/>
                   
                 </Route>
