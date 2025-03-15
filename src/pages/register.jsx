@@ -5,29 +5,7 @@ import { step1ValidationSchema,step2ValidationSchema } from '../pages/utils/vali
 const CrearCuenta = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
-  // Esquemas de validación con Yup
-  /* const step1ValidationSchema = Yup.object({
-    identificacion: Yup.string()
-      .required("El número de cédula es obligatorio.")
-      .matches(/^\d+$/, "Solo se permiten números.")
-      .min(10, "El número de cédula debe tener al menos 10 dígitos."),
-    nombres: Yup.string().required("Los nombres son obligatorios."),
-    apellidoPaterno: Yup.string().required("El apellido paterno es obligatorio."),
-    apellidoMaterno: Yup.string().required("El apellido materno es obligatorio."),
-    sexo: Yup.string().required("El sexo es obligatorio."),
-    fechaNacimiento: Yup.date()
-      .required("La fecha de nacimiento es obligatoria.")
-      .nullable(),
-  });
-
-  const step2ValidationSchema = Yup.object({
-    email: Yup.string()
-      .email("Debe ser un correo válido.")
-      .required("El correo es obligatorio."),
-    contrasena: Yup.string()
-      .required("La contraseña es obligatoria.")
-      .min(6, "La contraseña debe tener al menos 6 caracteres."),
-  }); */
+  
 
   // Formik para paso 1
   const formikStep1 = useFormik({

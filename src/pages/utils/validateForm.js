@@ -13,11 +13,22 @@ export const step1ValidationSchema = yup.object({
     LastName: yup.string().required("El apellido paterno es obligatorio."),
     apellidoMaterno: yup.string().required("El apellido materno es obligatorio."),
     sexo: yup.string().required("El sexo es obligatorio."),
+   
     fechaNacimiento: yup.date()
-      .required("La fecha de nacimiento es obligatoria.")
+      //.required("La fecha de nacimiento es obligatoria.")
       .nullable(),
+ 
   });
-
+  export const DatosPersonalesValidationSchema = yup.object({
+    estadocivil:yup.string().required("El estado civil es obligatorio."),
+    genero:yup.string().required("El campo es obligatorio."),
+    etnia:yup.string().required("La etnia es obligatorio."),
+    sangre:yup.string().required("El tipo de sangre es obligatorio."),
+    celular:yup.string().required("El campo es obligatorio."),
+    pais:yup.string().required("El campo es obligatorio."),
+    provincia:yup.string().required("El campo es obligatorio."),
+    ciudad:yup.string().required("El campo es obligatorio."),
+  });
   export const step2ValidationSchema = yup.object({
     email: yup.string()
       .email("Debe ser un correo válido.")

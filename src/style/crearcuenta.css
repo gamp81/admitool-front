@@ -71,3 +71,6 @@
   button:hover {
     opacity: 0.9;
   }
+  .error{
+    color: #ec1010;
+  }

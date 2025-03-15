@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import '../style/datospersonales.css';
 import { etnias,arraygenero } from "../data/datos";
-import { paises } from '../data/paises';
+import { paises,provincias,ciudadesEcuador } from '../data/paises';
 import { useFormik } from "formik";
-import { step1ValidationSchema,step2ValidationSchema } from '../pages/utils/validateForm';
+import { DatosPersonalesValidationSchema } from '../pages/utils/validateForm';
 const DatosPersonales = () => {
   const [formData, setFormData] = useState({
     nombres: '',
@@ -17,6 +17,8 @@ const DatosPersonales = () => {
     tipoSangre: '',
     fechaNacimiento: '',
     edad: '',
+    celular:'',
+      pais:'',
   });
 
   /* const handleChange = (e) => {
@@ -44,39 +46,39 @@ const DatosPersonales = () => {
       edad: edad.toString(),
     }));
   }; */
-const formikStep1 = useFormik({
+const formikDatosP = useFormik({
     initialValues: {
-      tipoIdentificacion: '',
+    
       identificacion: '',
       nombres: '',
       apellidos: '',
       cedula: '',
-      estadoCivil: '',
+      estadocivil: '',
       sexo: '',
       genero: '',
       etnia: '',
-      tipoSangre: '',
+      sangre: '',
       fechaNacimiento: '',
       edad: '',
-      celular:''
+      celular:'',
+      pais:'',
+      provincia:'',
+      ciudad:''
+
     },
-    validationSchema: step1ValidationSchema,
+    validationSchema: DatosPersonalesValidationSchema,
     onSubmit: (values) => {
-      const allData = { ...formikStep1.values, ...values };
+      const allData = { ...values };
       console.log("Datos enviados:", allData);
       alert("Registro completado.");
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes manejar el envío del formulario, por ejemplo, enviando los datos a una API
-    console.log(formData);
-  };
 
   return (
-    <form onSubmit={formikStep1.handleSubmit} className="formulario">
-    {/* <div className="form-container"> */}
+    <>
+    <form onSubmit={formikDatosP.handleSubmit} className="formulario">
+   
       <p className='message'>Recuerde:
         <li>En esta sección debe ingresar información personal.</li>
         <li>Los campos marcados con asterisco (*) son obligatorios.</li>
@@ -102,71 +104,70 @@ const formikStep1 = useFormik({
           <label>*Estado civil
           <select
                   name="estadocivil"
-                  value={formikStep1.values.estadocivil}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
+                  value={formikDatosP.values.estadocivil}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
                 >
                   <option value="">Seleccione</option>
                   <option value="Soltero">Soltero</option>
                   <option value="Divorciado">Divorciado</option>
                   <option value="Casado">Casado</option>
                   <option value="Viudo">Viudo</option>
-                </select>
-                {formikStep1.touched.estadocivil && formikStep1.errors.estadocivil && (
-                  <div className="error">{formikStep1.errors.estadocivil}</div>
+          </select>
+                {formikDatosP.touched.estadocivil && formikDatosP.errors.estadocivil && (
+                  <div className="error">{formikDatosP.errors.estadocivil}</div>
                 )}
 
           </label>
          
         </div>
         <div>
-        <label>
-                Sexo
-                <select
-                  name="sexo"
-                  value={formikStep1.values.sexo}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
-                >
-                  <option value="">Seleccione</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Femenino">Femenino</option>
-                </select>
-                {formikStep1.touched.sexo && formikStep1.errors.sexo && (
-                  <div className="error">{formikStep1.errors.sexo}</div>
-                )}
-              </label>
+          <label>
+                  Sexo
+                  <select
+                    name="sexo"
+                    value={formikDatosP.values.sexo}
+                    onChange={formikDatosP.handleChange}
+                    onBlur={formikDatosP.handleBlur}
+                  >
+                    <option value="">Seleccione</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                  </select>
+                  {formikDatosP.touched.sexo && formikDatosP.errors.sexo && (
+                    <div className="error">{formikDatosP.errors.sexo}</div>
+                  )}
+          </label>
         </div>
         <div>
-        <label>
-        *Autoidentificación de género
-                <select
-                  name="genero"
-                  value={formikStep1.values.genero}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
-                >
-                  <option value="">Seleccione</option>
-                    {arraygenero.map((genero,index)=>(
-                      <option key={index} value={genero.id}>
-                        {genero.value}
-                        </option>
-                    ))                      
-                    }
-                 </select>
-                {formikStep1.touched.genero && formikStep1.errors.genero && (
-                  <div className="error">{formikStep1.errors.genero}</div>
-                )}
-              </label>
-          
+          <label>
+          *Autoidentificación de género
+                  <select
+                    name="genero"
+                    value={formikDatosP.values.genero}
+                    onChange={formikDatosP.handleChange}
+                    onBlur={formikDatosP.handleBlur}
+                  >
+                    <option value="">Seleccione</option>
+                      {arraygenero.map((genero,index)=>(
+                        <option key={index} value={genero.id}>
+                          {genero.value}
+                          </option>
+                      ))                      
+                      }
+                  </select>
+                  {formikDatosP.touched.genero && formikDatosP.errors.genero && (
+                    <div className="error">{formikDatosP.errors.genero}</div>
+                  )}
+          </label>
         </div>
         <div>        
           <label>*Etnia
           <select
                   name="etnia"
-                  value={formikStep1.values.etnia}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
+                  value={formikDatosP.values.etnia}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
                 >
                    <option value="">Seleccione</option>
                       {etnias.map((etnia, index) => (
@@ -176,8 +177,8 @@ const formikStep1 = useFormik({
                       ))}
                  
                 </select>
-                {formikStep1.touched.etnia && formikStep1.errors.etnia && (
-                  <div className="error">{formikStep1.errors.etnia}</div>
+                {formikDatosP.touched.etnia && formikDatosP.errors.etnia && (
+                  <div className="error">{formikDatosP.errors.etnia}</div>
                 )}
           </label>
          
@@ -186,9 +187,9 @@ const formikStep1 = useFormik({
           <label>*Tipo de sangre
           <select
                   name="sangre"
-                  value={formikStep1.values.sangre}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
+                  value={formikDatosP.values.sangre}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
                 >
                   <option value="">Seleccione</option>
                   <option value="O+">O+</option><option value="O+">O-</option>
@@ -196,12 +197,11 @@ const formikStep1 = useFormik({
                   <option value="B+">B+</option><option value="B-">B-</option>
                   <option value="AB+">AB+</option><option value="AB-">AB-</option><option value="D">D</option>
                 </select>
-                {formikStep1.touched.sangre && formikStep1.errors.sangre && (
-                  <div className="error">{formikStep1.errors.sangre}</div>
+                {formikDatosP.touched.sangre && formikDatosP.errors.sangre && (
+                  <div className="error">{formikDatosP.errors.sangre}</div>
                 )}
             
           </label>
-         
         </div>
         <div>
           <label>*Fecha de nacimiento</label>
@@ -229,12 +229,12 @@ const formikStep1 = useFormik({
           <input
                   type="text"
                   name="celular"
-                  value={formikStep1.values.celular}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
+                  value={formikDatosP.values.celular}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
                 />
-                {formikStep1.touched.celular && formikStep1.errors.celular && (
-                  <div className="error">{formikStep1.errors.celular}</div>
+                {formikDatosP.touched.celular && formikDatosP.errors.celular && (
+                  <div className="error">{formikDatosP.errors.celular}</div>
                 )}
           </label>
         
@@ -247,9 +247,9 @@ const formikStep1 = useFormik({
           <label>*País
           <select
                   name="pais"
-                  value={formikStep1.values.pais}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
+                  value={formikDatosP.values.pais}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
                 >
                   <option value="">Seleccione</option>
                   {paises.map((pais,index)=>(
@@ -257,40 +257,72 @@ const formikStep1 = useFormik({
                   ))}
                  
                 </select>
-                {formikStep1.touched.pais && formikStep1.errors.pais && (
-                  <div className="error">{formikStep1.errors.pais}</div>
+               
+                {formikDatosP.touched.pais && formikDatosP.errors.pais && (
+                  <div className="error">{formikDatosP.errors.pais}</div>
                 )}
           </label>
         </div>
         <div>
-          <label>*Estado / Provincia</label>
-          <select>
-            <option>GUAYAS</option>
-            <option>PICHINCHA</option>
-            <option>EL ORO</option>
-            
+          <label>*Estado / Provincia
+        
+         { formikDatosP.values.pais==="1" ? ( 
+          <select 
+                name="provincia"
+                  value={formikDatosP.values.provincia}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}>
+              <option value="">Seleccione</option>
+              {provincias.map((provincia,index)=>(
+                <option key={index} value={provincia.siIdProvincia}>{provincia.strNombreProvincia}</option>
+              ))}
+              
           </select>
+          ) : ( 
+              <input
+                  type="text"
+                  name="provincia"
+                  value={formikDatosP.values.provincia}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
+                />
+          )}
+          {formikDatosP.touched.provincia && formikDatosP.errors.provincia && (
+                  <div className="error">{formikDatosP.errors.provincia}</div>
+                )}
+              </label>
         </div>
         <div>
           <label>*Ciudad
-          <input
+          { formikDatosP.values.pais==="1" ? (
+            <select name="ciudad" value={formikDatosP.values.ciudad} onChange={formikDatosP.handleChange} onBlur={formikDatosP.handleBlur}
+          > {ciudadesEcuador.filter((ciudad)=>String(ciudad.siIdProvincia)===formikDatosP.values.provincia).map((ciudad)=>(
+            <option key={ciudad.siIdCanton} value={ciudad.siIdCanton}>{ciudad.strNombreCanton}</option>
+          ))} 
+          
+
+          </select>
+          ): (<input
                   type="text"
                   name="ciudad"
-                  value={formikStep1.values.ciudad}
-                  onChange={formikStep1.handleChange}
-                  onBlur={formikStep1.handleBlur}
-                />
-                {formikStep1.touched.ciudad && formikStep1.errors.ciudad && (
-                  <div className="error">{formikStep1.errors.ciudad}</div>
+                  value={formikDatosP.values.ciudad}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
+                />)}
+          
+         
+                {formikDatosP.touched.ciudad && formikDatosP.errors.ciudad && (
+                  <div className="error">{formikDatosP.errors.ciudad}</div>
                 )}
           </label>
          
         </div>
       </div>
 
-      <button className="submit-button" onClick={handleSubmit}>Guardar y Continuar →</button>
-    {/* </div> */}
+      <button type="submit" >Guardar y Continuar →</button>
+  
     </form>
+    </>
   );
 };
 
