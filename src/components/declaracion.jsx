@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState,useContext } from 'react';
 import {AuthContext} from '../context/AuthContext'
+import { UserContext } from '../context/UserContext';
 const Declaracion = () => {
+    const { userData } = useContext(UserContext);
     const { user } = useContext(AuthContext);
+    
+    //console.log("nombres ",userData)
     return (
         <div className="declaracion">
         <p >
-        Yo, {user.nombre} ciudadano con número de identificación {user.docId}, declaro voluntariamente que: </p>
+        Yo, {userData.nombres} {userData.apellidos} ciudadano con número de identificación {user.docId}, declaro voluntariamente que: </p>
         <li>1. Ser responsable del ingreso de toda la información sobre mi persona en la plataforma de inscripción de Adadémico Admisiones de ESPOL.</li>
 
         <li>2. Ser responsable exclusivo del uso de las credenciales de acceso a la plataforma de Académico Admisiones de ESPOL.</li>

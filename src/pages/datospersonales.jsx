@@ -1,25 +1,14 @@
 // FormularioDatosPersonales.js
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../style/datospersonales.css';
 import { etnias,arraygenero } from "../data/datos";
 import { paises,provincias,ciudadesEcuador } from '../data/paises';
 import { useFormik } from "formik";
 import { DatosPersonalesValidationSchema } from '../pages/utils/validateForm';
+import { UserContext, UserProvider } from '../context/UserContext';
 const DatosPersonales = () => {
-  const [formData, setFormData] = useState({
-    nombres: '',
-    apellidos: '',
-    cedula: '',
-    estadoCivil: '',
-    sexo: '',
-    genero: '',
-    etnia: '',
-    tipoSangre: '',
-    fechaNacimiento: '',
-    edad: '',
-    celular:'',
-      pais:'',
-  });
+  const {userData} = useContext(UserContext);
+ 
 
   /* const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,31 +35,44 @@ const DatosPersonales = () => {
       edad: edad.toString(),
     }));
   }; */
+
 const formikDatosP = useFormik({
     initialValues: {
-    
-      identificacion: '',
-      nombres: '',
-      apellidos: '',
-      cedula: '',
-      estadocivil: '',
-      sexo: '',
-      genero: '',
-      etnia: '',
-      sangre: '',
-      fechaNacimiento: '',
-      edad: '',
-      celular:'',
-      pais:'',
-      provincia:'',
-      ciudad:''
+      id:userData.id,
+      identificacion: userData.identificacion,
+      nombres: userData.nombres,
+      apellidos: userData.apellidos,
+      email: userData.email,
+      estadocivil: userData.estadoCivil,
+      sexo: userData.sexo,
+      genero: userData.Genero,
+      etnia: userData.etnia,
+      TipoSangre: userData.tipoSangre,
+      fechaNacimiento: userData.fechaNacimiento,
+      edad: userData.edad,
+      celular:userData.celular,
+      pais:userData.pais,
+      provincia:userData.provincia,
+      ciudad:userData.ciudad,
+      emailContacto:userData.emailContacto
 
     },
     validationSchema: DatosPersonalesValidationSchema,
     onSubmit: (values) => {
       const allData = { ...values };
       console.log("Datos enviados:", allData);
-      alert("Registro completado.");
+      fetch("https://localhost:7198/api/Postulant/UpdateDataPostulant",{
+        method: 'POST',
+        headers:{ 'Content-Type':'application/json'},
+        body:JSON.stringify(allData)
+      }).then(result=>{
+        console.log('resultado',result);
+        alert("Registro completado.");
+      
+      })
+      .catch(error=>{
+        console.log(error);
+      });
     },
   });
 
@@ -90,15 +92,30 @@ const formikDatosP = useFormik({
       <div className="form-grid">
         <div>
           <label>*Nombres</label>
-          <input type="text" placeholder="Nombres" disabled/>
+          <input type="text" placeholder="Nombres" 
+            name="nombres"
+            value={formikDatosP.values.nombres}
+            onChange={formikDatosP.handleChange}
+            onBlur={formikDatosP.handleBlur}
+            disabled/>
         </div>
         <div>
           <label>*Apellidos</label>
-          <input type="text" placeholder="Apellidos" disabled />
+          <input type="text" placeholder="Apellidos" 
+            name="apellidos"
+            value={formikDatosP.values.apellidos}
+            onChange={formikDatosP.handleChange}
+            onBlur={formikDatosP.handleBlur}
+            disabled />
         </div>
         <div>
           <label>*Cédula</label>
-          <input type="text" placeholder="Cédula" disabled />
+          <input type="text" placeholder="Cédula" 
+            name="identificacion"
+            value={formikDatosP.values.identificacion}
+            onChange={formikDatosP.handleChange}
+            onBlur={formikDatosP.handleBlur}
+            disabled />
         </div>
         <div>
           <label>*Estado civil
@@ -186,8 +203,8 @@ const formikDatosP = useFormik({
         <div>
           <label>*Tipo de sangre
           <select
-                  name="sangre"
-                  value={formikDatosP.values.sangre}
+                  name="TipoSangre"
+                  value={formikDatosP.values.TipoSangre }
                   onChange={formikDatosP.handleChange}
                   onBlur={formikDatosP.handleBlur}
                 >
@@ -197,19 +214,25 @@ const formikDatosP = useFormik({
                   <option value="B+">B+</option><option value="B-">B-</option>
                   <option value="AB+">AB+</option><option value="AB-">AB-</option><option value="D">D</option>
                 </select>
-                {formikDatosP.touched.sangre && formikDatosP.errors.sangre && (
-                  <div className="error">{formikDatosP.errors.sangre}</div>
+                {formikDatosP.touched.TipoSangre  && formikDatosP.errors.TipoSangre  && (
+                  <div className="error">{formikDatosP.errors.TipoSangre }</div>
                 )}
             
           </label>
         </div>
         <div>
           <label>*Fecha de nacimiento</label>
-          <input type="date" value="" disabled/>
+          <input type="date" name="fechaNacimiento"
+                  value={formikDatosP.values.fechaNacimiento}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur} />
         </div>
         <div>
           <label>*Edad</label>
-          <input type="number" placeholder="" disabled/>
+          <input type="number" name="edad"
+                  value={formikDatosP.values.edad}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}  />
         </div>
        
       </div>
@@ -218,7 +241,12 @@ const formikDatosP = useFormik({
       <div className="form-grid">
         <div>
           <label>*Correo personal</label>
-          <input type="email" placeholder="" />
+          <input type="email" 
+                  name="email"
+                  value={formikDatosP.values.email}
+                  onChange={formikDatosP.handleChange}
+                  onBlur={formikDatosP.handleBlur}
+          />
         </div>
         <div>
           <label>*Código del país</label>

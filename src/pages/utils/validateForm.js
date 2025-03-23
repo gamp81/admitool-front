@@ -21,9 +21,10 @@ export const step1ValidationSchema = yup.object({
   });
   export const DatosPersonalesValidationSchema = yup.object({
     estadocivil:yup.string().required("El estado civil es obligatorio."),
+    sexo:yup.string().required("El campo es obligatorio."),
     genero:yup.string().required("El campo es obligatorio."),
     etnia:yup.string().required("La etnia es obligatorio."),
-    sangre:yup.string().required("El tipo de sangre es obligatorio."),
+    TipoSangre:yup.string().required("El tipo de sangre es obligatorio."),
     celular:yup.string().required("El campo es obligatorio."),
     pais:yup.string().required("El campo es obligatorio."),
     provincia:yup.string().required("El campo es obligatorio."),
