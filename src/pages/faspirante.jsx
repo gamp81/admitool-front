@@ -6,6 +6,7 @@ import Documentacion from "./documentacion2";
 import '../style/Tabs.css';
 import Alert from '@mui/material/Alert';
 import InfoAcademica from "./infoacademica";
+import ContactFamily from "../components/contactFamily";
 const Faspirante = () => {
   const [activeTab, setActiveTab] = useState("declaracion");
 
@@ -20,7 +21,7 @@ const Faspirante = () => {
       case "documentacion":
         return <Documentacion></Documentacion>;
       case "contactoFamiliar":
-        return <div>Contenido de Contacto Familiar</div>;
+        return <div><ContactFamily></ContactFamily></div>;
       default:
         return null;
     }

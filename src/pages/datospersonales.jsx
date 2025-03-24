@@ -5,8 +5,10 @@ import { etnias,arraygenero } from "../data/datos";
 import { paises,provincias,ciudadesEcuador } from '../data/paises';
 import { useFormik } from "formik";
 import { DatosPersonalesValidationSchema } from '../pages/utils/validateForm';
-import { UserContext, UserProvider } from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
+import { AuthContext } from '../context/AuthContext';
 const DatosPersonales = () => {
+  const {user} = useContext(AuthContext);
   const {userData} = useContext(UserContext);
  
 
@@ -35,7 +37,7 @@ const DatosPersonales = () => {
       edad: edad.toString(),
     }));
   }; */
-
+  const fechaFormateada = userData.fechaNacimiento.split("T")[0];
 const formikDatosP = useFormik({
     initialValues: {
       id:userData.id,
@@ -48,7 +50,7 @@ const formikDatosP = useFormik({
       genero: userData.Genero,
       etnia: userData.etnia,
       TipoSangre: userData.tipoSangre,
-      fechaNacimiento: userData.fechaNacimiento,
+      fechaNacimiento: fechaFormateada,
       edad: userData.edad,
       celular:userData.celular,
       pais:userData.pais,
