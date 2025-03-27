@@ -1,9 +1,11 @@
-import { useState } from "react";
-import '../style/documentacion.css'
+import { useState,useContext } from "react";
+import '../style/documentacion.css';
+import { UserContext } from '../context/UserContext';
 export default function Documentacion() {
   const [image, setImage] = useState(null);
   const [pdf, setPdf] = useState(null);
   const [error, setError] = useState("");
+  const {userData} = useContext(UserContext);
 
   const handleFileChange = (event, type) => {
     const file = event.target.files[0];
@@ -30,11 +32,12 @@ export default function Documentacion() {
     }
     
     const formData = new FormData();
+    formData.append("id",userData.id)
     formData.append("image", image);
-    formData.append("pdf", pdf);
+    formData.append("document", pdf);
     console.log(" enviando",formData)
     try {
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch("https://localhost:7198/api/PostulantFile/UploadDocument", {
         method: "POST",
         body: formData,
       });

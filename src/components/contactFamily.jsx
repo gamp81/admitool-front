@@ -1,10 +1,10 @@
-import React, { useEffect, useState,useContext } from 'react';
-import {AuthContext} from '../context/AuthContext'
+import React, { useState,useContext } from 'react';
+
 import { UserContext } from '../context/UserContext';
 import { useFormik } from 'formik';
 const ContactFamily = () => {
     const { userData } = useContext(UserContext);
-    const { user } = useContext(AuthContext);
+ 
     const formikContact = useFormik({
         initialValues:{
             postulantId:userData.id,
