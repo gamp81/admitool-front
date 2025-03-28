@@ -1,8 +1,13 @@
 // PostulacionView.js
-import React from "react";
+import React,{useContext} from "react";
 import "../style/postulacion.css";
+import { UserContext } from "../context/UserContext";
 
 const Postulacion = () => {
+  
+  const { userData,postulanteData } = useContext(UserContext);
+  const carreras = postulanteData
+console.log ("carreras ",carreras);
   return (
     <div className="postulacion-container">
       <h2 className="title">Postulación</h2>
@@ -10,15 +15,16 @@ const Postulacion = () => {
         <h2 className="subtitle">Datos Personales</h2>
         <div className="field-group">
           <label>Nombres:</label>
-          <span>Juan Andrés Ontaneda Villalva</span>
+          <span>{userData?.nombres} {userData?.apellidos}</span>
+         
         </div>
         <div className="field-group">
           <label>Identificación:</label>
-          <span>0999999999</span>
+          <span>{userData?.identificacion}</span>
         </div>
         <div className="field-group">
           <label>Correo:</label>
-          <span>jumanontaneda@gmail.com</span>
+          <span>{userData?.email}</span>
         </div>
       </div>
 

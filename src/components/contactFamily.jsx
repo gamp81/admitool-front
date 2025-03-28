@@ -4,13 +4,13 @@ import { UserContext } from '../context/UserContext';
 import { useFormik } from 'formik';
 const ContactFamily = () => {
     const { userData } = useContext(UserContext);
- 
+    console.log('resultado userData',userData);
     const formikContact = useFormik({
         initialValues:{
             postulantId:userData.id,
-            contactName: userData.contactName,
-            contactPhone: userData.contactPhone,
-            contactEmail: userData.contactEmail
+            contactName: userData.nombreContacto,
+            contactPhone: userData.telefonoContacto,
+            contactEmail: userData.emailContacto
         },
         onSubmit:(values)=>{
             

@@ -1,6 +1,7 @@
 import { useState,useContext } from "react";
 import '../style/documentacion.css';
 import { UserContext } from '../context/UserContext';
+
 export default function Documentacion() {
   const [image, setImage] = useState(null);
   const [pdf, setPdf] = useState(null);
@@ -32,7 +33,7 @@ export default function Documentacion() {
     }
     
     const formData = new FormData();
-    formData.append("id",userData.id)
+    formData.append("PostulantId",userData.id)
     formData.append("image", image);
     formData.append("document", pdf);
     console.log(" enviando",formData)

@@ -42,7 +42,7 @@ const Pagerouter = () =>{
                         <Route path='inscripcionend' element={<Inscription/>} />
                     </Route>
                     <Route element={<ProtectedRoute allowedRoles={["/postulacion"]} />}>
-                        <Route path='postulacion' element={<Postulacion/>} />
+                        <Route path='postulacion' element={<UserProvider><Postulacion/></UserProvider>} />
                     </Route>
                     <Route element={<ProtectedRoute allowedRoles={["/menuadmin"]} />}>
                         <Route path='menuadmin' element={<MenuAdmin/>} />
