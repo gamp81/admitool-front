@@ -1,13 +1,54 @@
 // PostulacionView.js
-import React,{useContext} from "react";
+import React,{useContext,useState,useEffect} from "react";
 import "../style/postulacion.css";
-import { UserContext } from "../context/UserContext";
-
+import { AuthContext } from "../context/AuthContext";
+import { UserContext } from '../context/UserContext';
 const Postulacion = () => {
-  
-  const { userData,postulanteData } = useContext(UserContext);
-  const carreras = postulanteData
-console.log ("carreras ",carreras);
+  const { user,token} = useContext(AuthContext); // Obtiene los datos del usuario autenticado
+  const {userData} = useContext(UserContext);
+  const [ postulanteData, setPostulanteData] = useState(null);
+  const [careers,setCareers] = useState([]);
+ 
+
+useEffect(() => {
+  if (!token) return; // Evita hacer la petición si token es null o undefined
+
+  const fetchData = async () => {
+      try {
+          console.log("El componente se ha renderizado");
+          const response = await fetch(`https://localhost:7198/api/Postulation/GetLastInscription`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${token}`
+              },
+          });
+
+          if (!response.ok) {
+              throw new Error(`Error en la solicitud: ${response.statusText}`);
+          }
+
+          const result = await response.json();
+          console.log("Datos obtenidos result.data: ", result.data);
+          setPostulanteData(result.data);
+      } catch (error) {
+          console.error("Error al obtener los datos:", error);
+      }
+  };
+
+  fetchData();
+}, [token]); // Agregamos token como dependencia
+
+useEffect(() => {
+  console.log("Datos actualizados postulanteData:", postulanteData);
+  setCareers(postulanteData?.careerResponses.map(c => c.careerName));
+}, [postulanteData]); // Este useEffect se ejecuta cuando postulanteData cambia
+useEffect(() => {
+ 
+  console.log("Datos obtenidos setCareers: ",careers);
+},[careers]);
+
+
   return (
     <div className="postulacion-container">
       <h2 className="title">Postulación</h2>
@@ -32,12 +73,14 @@ console.log ("carreras ",carreras);
       <div className="career-selection-container">
       <h2 className="section-title">Carreras Elegidas</h2>
       <div className="careers">
+      {careers.map((career, index) => (
+        
         <div className="career">
-          <div className="circle blue">1</div>
-          <p>Electrónica y Automatización</p>
+          <div className="circle blue">{index+1}</div>
+          <p key={index}>{career}</p>
           <span>Preferencia</span>
-        </div>
-        <div className="career">
+        </div>))}
+        {/* <div className="career">
           <div className="circle blue">2</div>
           <p>Electricidad</p>
           <span>Preferencia</span>
@@ -46,7 +89,7 @@ console.log ("carreras ",carreras);
           <div className="circle blue">3</div>
           <p>Telecomunicaciones</p>
           <span>Preferencia</span>
-        </div>
+        </div> */}
       </div>
       <button className="change-career-button">Cambiar Carrera</button>
 
