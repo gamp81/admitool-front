@@ -3,23 +3,16 @@ import { useTable } from "react-table";
 import "../../../style/vistasAdmin.css"
 import CrearPrograma from '../programa/crearprograma';
 const ListaProgramas= ()=> {
+    const apiUrl = process.env.REACT_APP_API_ADMIN ;
     const [data,setData] = useState([]);
     const [openModal,setOpenModal]= useState(false);
     useEffect(()=>{
         fetchData();
     },[]);
     const fetchData = () =>{
-        const dataObject = {
-            0: { id: 1, nombre: "CIENCIAS E INGENIERÍAS", order: 1, professionalCareers: null },
-            1: { id: 2, nombre: "CIENCIAS E INGENIERÍAS APLICADAS GRUPO I", order: 2, professionalCareers: null },
-            2: { id: 3, nombre: "ARTE", order: 3, professionalCareers: null },
-            3: { id: 4, nombre: "EDUCACION COMERCIAL", order: 4, professionalCareers: null }
-        };
-       /*  setData(Object.values(dataObject) || []); */
-        /* setData(Object.values(dataObject));
-        console.log("datos traidos : ",dataObject); */
+        
         console.log("datos data : ",data);
-        fetch("https://localhost:7016/api/KnowledgeArea/GetAll",{
+        fetch(`${apiUrl}KnowledgeArea/GetAll`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"

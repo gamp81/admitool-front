@@ -10,7 +10,7 @@ import { AuthContext } from '../context/AuthContext';
 const DatosPersonales = () => {
   const {user} = useContext(AuthContext);
   const {userData} = useContext(UserContext);
- 
+  const apiUrl = process.env.REACT_APP_API_URL ;
 
   /* const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,7 +63,7 @@ const formikDatosP = useFormik({
     onSubmit: (values) => {
       const allData = { ...values };
       console.log("Datos enviados:", allData);
-      fetch("https://localhost:7198/api/Postulant/UpdateDataPostulant",{
+      fetch(`${apiUrl}Postulant/UpdateDataPostulant`,{
         method: 'POST',
         headers:{ 'Content-Type':'application/json'},
         body:JSON.stringify(allData)

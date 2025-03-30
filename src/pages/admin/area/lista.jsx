@@ -4,13 +4,14 @@ import "../../../style/vistasAdmin.css"
 import CrearArea from '../area/create';
 
 const AcademicTable = () => {
-const [data,setData] = useState([]);
-const [openModal,setOpenModal]= useState(false);
+  const apiUrl = process.env.REACT_APP_API_ADMIN ;
+  const [data,setData] = useState([]);
+  const [openModal,setOpenModal]= useState(false);
   useEffect(()=>{
     fetchData();
   },[]);
   const fetchData = ()=>{
-    fetch("https://localhost:7016/api/KnowledgeArea/GetAll",{
+    fetch(`${apiUrl}KnowledgeArea/GetAll`,{
       method:"GET",
       headers:{
         "Content-Type":"application/json",

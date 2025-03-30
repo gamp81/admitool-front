@@ -3,12 +3,13 @@ import { useFormik } from "formik";
 import { Dialog, DialogTitle,DialogContent } from "@mui/material";
 import {ProgramaAcademico} from '../../../pages/utils/validateForm';
 function CrearPrograma({open,onClose,onProgramaCreated}) {
+    const apiUrl = process.env.REACT_APP_API_ADMIN ;
     const [areas,setAreas]=useState([]);
     useEffect(()=>{
         fetchData();
       },[]);
       const fetchData = ()=>{
-        fetch("https://localhost:7016/api/KnowledgeArea/GetAll",{
+        fetch(`${apiUrl}KnowledgeArea/GetAll`,{
           method:"GET",
           headers:{
             "Content-Type":"application/json",
@@ -32,7 +33,7 @@ function CrearPrograma({open,onClose,onProgramaCreated}) {
         },validationSchema:ProgramaAcademico,
         onSubmit:(values)=>{
             const data = {...values};
-            fetch("https://localhost:7016/api/Career/Create",{
+            fetch(`${apiUrl}Career/Create`,{
                 method:'POST',
                 headers:{
                   'Content-Type':'application/json' 

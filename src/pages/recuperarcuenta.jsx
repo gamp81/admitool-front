@@ -3,6 +3,7 @@ import "../style/recuperarcuenta.css";
 import { useNavigate } from "react-router-dom";
 
 const RecuperarCuenta = () =>{
+    const apiUrl = process.env.REACT_APP_API_AUTH ;
     const [mail,setMail]=useState('');
     const navigate = useNavigate();
     const handleSubmit =(e)=>{
@@ -11,7 +12,7 @@ const RecuperarCuenta = () =>{
             dt1:mail,
             dt2:"",
         };
-        fetch("https://localhost:7173/api/Auth/RecoverPassword",{
+        fetch(`${apiUrl}RecoverPassword`,{
             method:'POST',
             headers:{ 'Content-Type':'application/json'},
             body:JSON.stringify(data)

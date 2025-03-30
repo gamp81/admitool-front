@@ -10,10 +10,10 @@ export const UserProvider = ({ children }) => {
     
     useEffect(() => {
         if (user) {
-            fetch(`https://localhost:7198/api/Postulant/GetDataPostulant?id=${user.usrId}`)
+            fetch(`${apiUrl}Postulant/GetDataPostulant?id=${user.usrId}`)
                 .then(response => response.json())
                 .then(result => {
-                    console.log("Datos obtenidos data: ", result.data);
+                    console.log("Datos obtenidos GetDataPostulant: ", result.data);
                     setUserData(result.data);
                 })
                 .catch(error => console.log("Error al obtener los datos:", error));

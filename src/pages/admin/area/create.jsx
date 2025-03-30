@@ -4,6 +4,7 @@ import {useFormik} from "formik";
 import {AreaConocimiento} from '../../../pages/utils/validateForm'
 import {Dialog, DialogContent, DialogTitle} from "@mui/material"
 function CrearArea({open,onClose,onAreaCreated}) {
+    const apiUrl = process.env.REACT_APP_API_ADMIN ;
     const navigate = useNavigate();
     const formikArea = useFormik({
         initialValues:{
@@ -15,7 +16,7 @@ function CrearArea({open,onClose,onAreaCreated}) {
         validationSchema:AreaConocimiento,
         onSubmit:(values)=>{
             const data = {...values};
-            fetch("https://localhost:7016/api/KnowledgeArea/Create",{
+            fetch(`${apiUrl}KnowledgeArea/Create`,{
                 method:'POST',
                 headers:{
                   'Content-Type':'application/json' 

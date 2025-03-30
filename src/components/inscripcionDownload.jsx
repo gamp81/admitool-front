@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 const Inscription = ()=> {
+    const apiUrl = process.env.REACT_APP_API_URL ;
     const { user,token } = useContext(AuthContext);
     const location = useLocation();
     const carreras = location.state?.careers || [];
@@ -24,7 +25,7 @@ const Inscription = ()=> {
           console.log("Enviando datos desde inscrip:", payload);
           
           try {
-            const response = await fetch("https://localhost:7198/api/Inscription/GenerateProofRegistration", {
+            const response = await fetch(`${apiUrl}Inscription/GenerateProofRegistration`, {
               method: "POST",
               headers: { "Content-Type": "application/json",
                           "Authorization": `Bearer ${token}`

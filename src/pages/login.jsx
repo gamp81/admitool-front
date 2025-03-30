@@ -7,11 +7,10 @@ import { useFormik } from "formik";
 import { step2ValidationSchema } from '../pages/utils/validateForm';
 const Login = () => {
   const { login, user } = useContext(AuthContext);
-  const [password,setPassword]= useState('');
-  const [username,setUsername]= useState('');
   const navigate = useNavigate();
   const [loginSuccessful,setLoginsuccessful]=useState(false);
-
+  const apiUrl = process.env.REACT_APP_API_AUTH ;
+ 
   const formikLogin = useFormik({
       initialValues: {
         email: "",
@@ -20,7 +19,7 @@ const Login = () => {
       validationSchema: step2ValidationSchema,
           onSubmit: (values) => {
             const data= {...values};
-            fetch("https://localhost:7173/api/Auth/login",{
+            fetch(`${apiUrl}Auth/login`,{
               method:'POST',
               headers:{
                   'Content-Type':'application/json'

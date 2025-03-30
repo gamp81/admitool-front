@@ -3,6 +3,7 @@ import '../style/documentacion.css';
 import { UserContext } from '../context/UserContext';
 
 export default function Documentacion() {
+  const apiUrl = process.env.REACT_APP_API_URL ;
   const [image, setImage] = useState(null);
   const [pdf, setPdf] = useState(null);
   const [error, setError] = useState("");
@@ -38,7 +39,7 @@ export default function Documentacion() {
     formData.append("document", pdf);
     console.log(" enviando",formData)
     try {
-      const response = await fetch("https://localhost:7198/api/PostulantFile/UploadDocument", {
+      const response = await fetch(`${apiUrl}PostulantFile/UploadDocument`, {
         method: "POST",
         body: formData,
       });

@@ -3,6 +3,7 @@ import React, { useState,useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useFormik } from 'formik';
 const ContactFamily = () => {
+    const apiUrl = process.env.REACT_APP_API_URL ;
     const { userData } = useContext(UserContext);
     console.log('resultado userData',userData);
     const formikContact = useFormik({
@@ -15,7 +16,7 @@ const ContactFamily = () => {
         onSubmit:(values)=>{
             
             const allData={...values};
-            fetch("https://localhost:7198/api/Postulant/UpdateContactDataPostulant",{
+            fetch(`${apiUrl}Postulant/UpdateContactDataPostulant`,{
                 method: 'POST',
                 headers:{ 'Content-Type':'application/json'},
                 body:JSON.stringify(allData)

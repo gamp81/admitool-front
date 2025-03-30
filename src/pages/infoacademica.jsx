@@ -1,14 +1,15 @@
 import React, { useContext, useState,useEffect } from "react";
 import Alert from '@mui/material/Alert';
 import "../style/infoacademica.css";
-import { arraycolegios } from '../data/colegios';
+//import { arraycolegios } from '../data/colegios';
 import { UserContext } from '../context/UserContext';
 import { useFormik } from "formik";
 const InfoAcademica = () => {
+    const apiUrl = process.env.REACT_APP_API_URL ;
     const [data, setData] = useState(null);
     useEffect(() => {
       console.log("obtener los userData.institucionId:", userData.institucionId)
-        fetch("https://localhost:7198/api/Catalog/GetInstitutions", {
+        fetch(`${apiUrl}Catalog/GetInstitutions`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +32,7 @@ const InfoAcademica = () => {
       },
       onSubmit:(values)=>{
         const data={...values};
-        fetch("https://localhost:7198/api/Postulant/UpdateInstitutionDataPostulant",{
+        fetch(`${apiUrl}Postulant/UpdateInstitutionDataPostulant`,{
           method:"POST",
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify(data)

@@ -5,7 +5,7 @@ import { step1ValidationSchema,step2ValidationSchema } from '../pages/utils/vali
 const CrearCuenta = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
-  
+  const apiUrl = process.env.REACT_APP_API_AUTH ;
 
   // Formik para paso 1
   const formikStep1 = useFormik({
@@ -35,7 +35,7 @@ const CrearCuenta = () => {
       const allData = { ...formikStep1.values, ...values };
       console.log("Datos enviados:", allData);
       //alert("Registro completado.");
-      fetch("https://localhost:7173/api/Auth/CreateAccount",{
+      fetch(`${apiUrl}Auth/CreateAccount`,{
         method: 'POST',
         headers:{
             'Content-Type':'application/json'

@@ -21,11 +21,11 @@ export default function Carrera() {
   const [selectedAreaId, setSelectedAreaId] = useState(null); // Área de conocimiento seleccionada
   const [nameArea, setNameArea] = useState(null); 
   const [openModal, setOpenModal] = useState(false);
- 
+  const apiUrl = process.env.REACT_APP_API_URL ;
   const navigate = useNavigate();
   useEffect(() => {
     console.log("Enviando token:", token);
-    fetch("https://localhost:7198/api/Inscription/GetKnowledgeArea", {
+    fetch(`${apiUrl}Inscription/GetKnowledgeArea`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function Carrera() {
     console.log("Enviando datos:", payload);
     
     try {
-      const response = await fetch("https://localhost:7198/api/Inscription/SaveApplication", {
+      const response = await fetch(`${apiUrl}Inscription/SaveApplication`, {
         method: "POST",
         headers: { "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`

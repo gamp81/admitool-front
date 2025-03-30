@@ -4,10 +4,12 @@ import "../style/postulacion.css";
 import { AuthContext } from "../context/AuthContext";
 import { UserContext } from '../context/UserContext';
 const Postulacion = () => {
+  const apiUrl = process.env.REACT_APP_API_URL ;
   const { user,token} = useContext(AuthContext); // Obtiene los datos del usuario autenticado
   const {userData} = useContext(UserContext);
   const [ postulanteData, setPostulanteData] = useState(null);
   const [careers,setCareers] = useState([]);
+  const [orden,setOrden] = useState([]);
  
 
 useEffect(() => {
@@ -16,7 +18,7 @@ useEffect(() => {
   const fetchData = async () => {
       try {
           console.log("El componente se ha renderizado");
-          const response = await fetch(`https://localhost:7198/api/Postulation/GetLastInscription`, {
+          const response = await fetch(`${apiUrl}Postulation/GetLastInscription`, {
               method: "GET",
               headers: {
                   "Content-Type": "application/json",
@@ -42,12 +44,18 @@ useEffect(() => {
 useEffect(() => {
   console.log("Datos actualizados postulanteData:", postulanteData);
   setCareers(postulanteData?.careerResponses.map(c => c.careerName));
+  setOrden(postulanteData?.dataGroup)
 }, [postulanteData]); // Este useEffect se ejecuta cuando postulanteData cambia
 useEffect(() => {
  
   console.log("Datos obtenidos setCareers: ",careers);
+  
 },[careers]);
-
+useEffect(() => {
+ 
+  console.log("Datos obtenidos orden: ",orden);
+  
+},[orden]);
 
   return (
     <div className="postulacion-container">
@@ -73,7 +81,7 @@ useEffect(() => {
       <div className="career-selection-container">
       <h2 className="section-title">Carreras Elegidas</h2>
       <div className="careers">
-      {careers.map((career, index) => (
+      {careers?.map((career, index) => (
         
         <div className="career">
           <div className="circle blue">{index+1}</div>
@@ -98,22 +106,22 @@ useEffect(() => {
         <div className="group">
           <div className="circle green">1</div>
           <p>Grupo de mayor vulnerabilidad socioeconómica</p>
-          <div className="status-check">✔</div>
+          <div className={orden?.grupoVulnerable ? "status-check" : "status-cross" }> {orden?.grupoVulnerable ? "✔" : "✘" } </div>
         </div>
         <div className="group">
           <div className="circle teal">2</div>
           <p>Grupo de Mérito Académico</p>
-          <div className="status-check">✔</div>
+          <div className={orden?.grupoMeritoAcademico ? "status-check" : "status-cross" }>{orden?.grupoMeritoAcademico ? "✔" : "✘" }</div>
         </div>
         <div className="group">
           <div className="circle purple">3</div>
           <p>Bachiller de último período académico</p>
-          <div className="status-cross">✘</div>
+          <div className={orden?.grupoUltimoBachiller ? "status-check" : "status-cross" }>{orden?.grupoUltimoBachiller ? "✔" : "✘" }</div>
         </div>
         <div className="group">
           <div className="circle orange">4</div>
           <p>Población general</p>
-          <div className="status-cross">✘</div>
+          <div className={orden?.grupoGeneral ? "status-check" : "status-cross" }>{orden?.grupoGeneral ? "✔" : "✘" }</div>
         </div>
       </div>
       <div className="container">
