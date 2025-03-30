@@ -10,7 +10,7 @@ export default class WelcomeContent extends React.Component {
               <div className="container">
                 <h1 className="display-4">Bienvenidos al sistema de admisión</h1>
               {/*   <p className="lead">Login to see protected content.</p> */}
-                <img src={banner} className="App-banner" alt="logo" />
+                <img src={banner} className="container " alt="logo" />
               </div>
             </div>
         </div>

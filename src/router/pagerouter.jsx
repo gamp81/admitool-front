@@ -19,7 +19,7 @@ import AdminAreaCrear from '../pages/admin/area/create.jsx'
 import AdminProgramas from '../pages/admin/programa/listaprograma.jsx'
 const Pagerouter = () =>{
     return (
-       
+       <div className='container'>
         <BrowserRouter future={{ v7_startTransition: true }}>
          <NavBarHeader /> 
             <Routes>
@@ -60,6 +60,8 @@ const Pagerouter = () =>{
               
             </Routes> 
             </BrowserRouter>
+       </div>
+        
        
         
 

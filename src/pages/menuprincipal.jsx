@@ -19,8 +19,7 @@ const Menuprincipal = () => {
 
 
   return (
-    <>
-      <div className="container">
+     <div className="container">
         <p className="message">
           Estimado aspirante, se necesita que primero actualice sus datos para que
           pueda proceder a inscribirse.
@@ -33,9 +32,7 @@ const Menuprincipal = () => {
           <Nav.Link  as={Link} to="/aceptacion" disabled><Card icon="✅" text="ACEPTACION" color="#f5a623" /></Nav.Link>
         </div>
       </div>
-  
-   
-    </>
+     
   );
 };
 

@@ -1,0 +1,36 @@
+.App-header {
+    background-color: #343a40; /* Color oscuro para la barra de navegación */
+    padding: 10px 20px;
+  }
+  
+  .App-logo {
+    height: 40px; /* Ajustar tamaño del logo */
+    width: auto;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaciado entre elementos */
+  }
+  
+  .navbar-collapse {
+    justify-content: space-between; /* Asegurar distribución */
+  }
+  
+  @media (max-width: 991px) { /* Cuando colapsa en Bootstrap `lg` */
+    .navbar-nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .ms-auto {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .App-logo {
+      height: 30px; /* Reducir tamaño en pantallas pequeñas */
+    }
+  }
+  

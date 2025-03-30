@@ -1,20 +1,22 @@
 import { Navbar, Nav, Container,NavDropdown,Form,Button  } from "react-bootstrap"
 import { Outlet, Link } from "react-router-dom"
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import logo from '../logo.svg';
-import "../style/navbar.css"
+//import "../style/navbar.css"
 import { AuthContext } from "../context/AuthContext";
 import rolesConfig from "../config/rolesConfig";
 const NavBar = () => {
     const { logout,isAuthenticated,user } = useContext(AuthContext);
+    const [expanded, setExpanded] = useState(false);
     return(
        <>    
-       <Navbar className="bg-gray-900 App-header px-4 py-2" >
+       <Navbar bg="dark" variant="dark" className="bg-gray-900 App-header px-1 py-1" >
         <Container>
-            <Navbar.Brand as={Link} to="/" className="flex items-center space-x-2"><img src={logo} className="h-auto w-10 App-logo" alt="logo" /> AdmiTool</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Brand as={Link} to="/" className="flex items-center space-x-2 ">
+            <img src={logo} className="h-8 d-inline-block mr-2 App-logo " alt="logo" /> AdmiTool</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : true)}/>
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="flex flex-col gap-2 lg:flex-row lg:gap-4 me-auto">
+                <Nav className="flex flex-col px-4 gap-2 lg:flex-row lg:gap-4 me-auto">
                     <Nav.Link as={Link} to="/" className="text-white hover:text-gray-300">Inicio</Nav.Link>
                     {isAuthenticated && rolesConfig[user.role]?.includes("/menu") && (<Nav.Link  as={Link} to="/menu" className="text-white hover:text-gray-300">Menu</Nav.Link>)} 
                     

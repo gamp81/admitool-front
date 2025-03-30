@@ -1,5 +1,6 @@
 .formulario-container {
-    width: 400px;
+    max-width: 400px;  
+  
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -74,3 +75,25 @@
   .error{
     color: #ec1010;
   }
+  /* Diseño responsivo */
+@media (max-width: 768px) {
+  .formulario-container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-container {
+    padding: 15px;
+  }
+  
+  input, textarea, select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
