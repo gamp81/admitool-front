@@ -70,7 +70,7 @@ export const CreacionCuentaValidate = yup.object().shape({
 });
 
 export const RecuperarCuentaValidate = yup.object().shape({
-    tipoidentificacion: yup.string().trim().required("El correo no puede quedar vacio"),
+    tipoidentificacion: yup.string().trim().required("El tipo identificacion no puede quedar vacio"),
     pas: yup.string().trim().required("La contraseña es requerida"),
 });
 export const AreaConocimiento = yup.object().shape({
@@ -81,5 +81,44 @@ export const AreaConocimiento = yup.object().shape({
 export const ProgramaAcademico = yup.object().shape({
   nombre: yup.string().required("El nombre es obligatorio."),
   descripcion: yup.string().required("La descripcion es obligatoria."),
-  modalidad: yup.string().required("La descripcion es obligatoria."),
+  modalidad: yup.string().required("La modalidad es obligatoria."),
+});
+export const Materia = yup.object().shape({
+  nombre: yup.string().required("El nombre es obligatorio."),
+  codigo: yup.string().required("El codigo es obligatoria."),
+  
+});
+export const MateriaAcademica = yup.object().shape({
+  materiaId: yup.string().required("La materia es obligatoria."),
+  areaConocimientoId: yup.string().required("El area de conocimiento es obligatoria."),
+});
+export const valiCurso = yup.object().shape({
+  capacidad: yup.string().required("Capacidad es obligatorio."), 
+  cuposDisponibles: yup.string()
+   .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+  estado: yup.string().required("Estado es obligatorio."), 
+  diaSemana: yup.string().required("Dia es obligatorio."), 
+  fecha: yup.date()
+  //.required("Fecha es obligatoria.")
+  .nullable(),
+  horaInicio: yup.string()
+  //.matches(/^([01]\d|2[0-3]):([0-5]\d)$/, "Formato inválido. Usa HH:mm")
+  .required("La hora es obligatoria") ,
+  
+  horaFin: yup.string()
+    //.matches(/^([01]\d|2[0-3]):([0-5]\d)$/, "Formato inválido. Usa HH:mm")
+    .required("La hora es obligatoria"),
+  
+  materiaId: yup.string().required("La materia es obligatoria."),
+  areaConocimientoId: yup.string().required("El area de conocimiento es obligatoria."),
+  profesorId: yup.string().required("Profesor es obligatorio."),
+  periodoId: yup.string().required("Periodo es obligatorio."), 
+  numeroRegistrados:yup.string()
+  .matches(/^\d+$/, "Solo se permiten números.")
+  .nullable(),
+  //.required("Es obligatorio."),
+  
+  
+  
+  
 });

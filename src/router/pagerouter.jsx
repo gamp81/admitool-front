@@ -17,6 +17,8 @@ import MenuAdmin from '../pages/admin/menuAdmin.jsx';
 import AdminAreaLista from '../pages/admin/area/lista.jsx';
 import AdminAreaCrear from '../pages/admin/area/create.jsx'
 import AdminProgramas from '../pages/admin/programa/listaprograma.jsx'
+import AdminMaterias from '../pages/admin/materias/listamaterias.jsx'
+import AdminCursos from '../pages/admin/cursos/listacursos.jsx'
 const Pagerouter = () =>{
     return (
        <div className='container'>
@@ -49,6 +51,8 @@ const Pagerouter = () =>{
                         <Route path='AdminProgramas' element={<AdminProgramas/>} />
                         <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
                         <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
+                        <Route path='AdminMaterias' element={ <AdminMaterias/> } />
+                        <Route path='AdminCursos' element={ <AdminCursos/> } />
                     </Route>
                                                            
                  

@@ -29,9 +29,9 @@ const MenuAdmin = () => {
           <Nav.Link  as={Link} to="/AdminAreaLista"><Card icon="🔄" text="AREAS DE CONOCIMIENTO" color="#4a90e2"/></Nav.Link>
           <Nav.Link  as={Link} to="/AdminProgramas"><Card icon="📋" text="PROGRAMA ACADEMICO" color="#f5a623" /></Nav.Link>
           <Nav.Link  as={Link} to="/AdminPeriodos"><Card icon="📝" text="PERIODOS" color="#f5a623" /></Nav.Link>
+          <Nav.Link  as={Link} to="/AdminCursos" ><Card icon="✅" text="CURSOS" color="#f5a623" /></Nav.Link>
+          <Nav.Link  as={Link} to="/AdminMaterias" ><Card icon="📅" text="MATERIAS" color="#f5a623" /></Nav.Link>
           
-          <Nav.Link  as={Link} to="/matriculacion" disabled><Card icon="📅" text="MATRICULACIÓN" color="#f5a623" /></Nav.Link>
-          <Nav.Link  as={Link} to="/aceptacion" disabled><Card icon="✅" text="ACEPTACION" color="#f5a623" /></Nav.Link>
         </div>
       </div>
   
