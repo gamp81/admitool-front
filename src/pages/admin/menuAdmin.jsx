@@ -31,10 +31,11 @@ const MenuAdmin = () => {
           <Nav.Link  as={Link} to="/AdminPeriodos"><Card icon="📝" text="PERIODOS" color="#f5a623" /></Nav.Link>
           <Nav.Link  as={Link} to="/AdminCursos" ><Card icon="✅" text="CURSOS" color="#f5a623" /></Nav.Link>
           <Nav.Link  as={Link} to="/AdminMaterias" ><Card icon="📅" text="MATERIAS" color="#f5a623" /></Nav.Link>
+          <Nav.Link  as={Link} to="/AdminAsignacion" ><Card icon="🔑​" text="ASIGNACION" color="#f5a623" /></Nav.Link>
           
         </div>
       </div>
-  
+      
    
     </>
   );

@@ -19,6 +19,7 @@ import AdminAreaCrear from '../pages/admin/area/create.jsx'
 import AdminProgramas from '../pages/admin/programa/listaprograma.jsx'
 import AdminMaterias from '../pages/admin/materias/listamaterias.jsx'
 import AdminCursos from '../pages/admin/cursos/listacursos.jsx'
+import AdminAsignacion from '../pages/admin/asignacion/asignacion.jsx'
 const Pagerouter = () =>{
     return (
        <div className='container'>
@@ -53,6 +54,7 @@ const Pagerouter = () =>{
                         <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
                         <Route path='AdminMaterias' element={ <AdminMaterias/> } />
                         <Route path='AdminCursos' element={ <AdminCursos/> } />
+                        <Route path='AdminAsignacion' element={ <AdminAsignacion/> } />
                     </Route>
                                                            
                  

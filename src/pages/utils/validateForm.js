@@ -92,6 +92,11 @@ export const MateriaAcademica = yup.object().shape({
   materiaId: yup.string().required("La materia es obligatoria."),
   areaConocimientoId: yup.string().required("El area de conocimiento es obligatoria."),
 });
+export const AsigancionPeriodo = yup.object().shape({
+  periodoId: yup.string().required("Periodo es obligatorio"),
+  //areaConocimientoId: yup.string().required("El area de conocimiento es obligatoria."),
+});
+
 export const valiCurso = yup.object().shape({
   capacidad: yup.string().required("Capacidad es obligatorio."), 
   cuposDisponibles: yup.string()
