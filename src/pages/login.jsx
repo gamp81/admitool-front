@@ -28,7 +28,7 @@ const Login = () => {
             }).then(response=>response.json())
             .then(result=>{
               //console.log(" data traida  ",result.data.token) 
-              if (result.data.token){
+              if (result.data){
                 localStorage.setItem('token',result.data.token)
                 setLoginsuccessful(true);
                 login(result.data.token);
@@ -42,6 +42,7 @@ const Login = () => {
               }else{
                 setLoginsuccessful(false);
                 alert("Credenciales incorrectas");
+                
               }
             }).catch(error=>{
               console.log(error)
