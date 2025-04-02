@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
     
     useEffect(() => {
         if (user) {
-            fetch(`${apiUrl}Postulant/GetDataPostulant?id=${user.usrId}`)
+            fetch(`${apiUrl}Postulant/GetDataPostulant?id=${user.posId}`)
                 .then(response => response.json())
                 .then(result => {
                     console.log("Datos obtenidos GetDataPostulant: ", result.data);
