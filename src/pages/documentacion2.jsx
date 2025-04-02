@@ -44,7 +44,7 @@ export default function Documentacion() {
         body: formData,
       });
       const data = await response.json();
-      alert(data.message);
+      alert("Documentación guardada con exito ");
     } catch (error) {
         console.error("Error al subir los archivos:", error);
       setError("Error al subir los archivos");
