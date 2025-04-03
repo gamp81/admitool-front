@@ -41,7 +41,7 @@ function CrearPeriodo({open,onClose,onProgramaCreated}) {
     })
     return (  
         <Dialog className="col-6 mx-auto" open={open} onClose={onClose} maxWidth="lg" fullWidth>
-            <DialogTitle>Curso Academico</DialogTitle>
+            <DialogTitle>Periodo Academico</DialogTitle>
             <DialogContent>
                 <div>
                     <form onSubmit={formikPrograma.handleSubmit} class="row g-3">

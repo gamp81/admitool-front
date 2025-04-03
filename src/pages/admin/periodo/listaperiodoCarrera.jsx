@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useTable } from "react-table";
 import "../../../style/vistasAdmin.css"
-import CrearPeriodo from '../periodo/crearperiodo';
+
 import CrearPeriodoCarrera from '../periodo/crearperiodoCarrera';
-   import {useNavigate} from "react-router-dom"
-const ListaPeriodo= ()=> {
-    const navigate = useNavigate();
+const ListaPeriodoCarrera= ()=> {
+    
     const apiUrl = process.env.REACT_APP_API_ADMIN ;
     const [data,setData] = useState([]);
     const [fila,setFila] = useState({});
@@ -17,7 +16,7 @@ const ListaPeriodo= ()=> {
     const fetchData = () =>{
         
         console.log("datos data : ",data);
-        fetch(`${apiUrl}Periodo`,{
+        fetch(`${apiUrl}PeriodoCarrera`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -29,10 +28,6 @@ const ListaPeriodo= ()=> {
           setData(result|| []);
           
         }).catch(error=>console.log("Error al obtener los datos",error));
-    }
-    const handlePeriodoCarrera=()=>{
-        console.log("navigate periodo carrera:");
-        navigate("/AdminPeriodosCarreras")
     }
     const handleEdit = (row) => {
         console.log("Modificar:", row);
@@ -49,17 +44,18 @@ const ListaPeriodo= ()=> {
     const columns = React.useMemo(
         ()=>[
             { Header: "ID", accessor: "id" },
-            { Header: "Descripcion", accessor: "descripcion" },
-            { Header: "Año", accessor: "anio" },
-            { 
-                Header: "Fecha Vigencia Inicio", 
-                accessor: "fechaVigenciaDesde",
-                Cell: ({ value }) => formatDate(value)
-            },
-            { Header: "Fecha Vigencia Fin", accessor: "fechaVigenciaHasta",Cell: ({ value }) => formatDate(value) },
-            { Header: "Fecha Registro", accessor: "fechaRegistro",Cell: ({ value }) => formatDate(value) },
-            { Header: "Estado", accessor: "estado" },
-            { Header: "Tipo", accessor: "tipo" },
+            { Header: "Periodo", accessor: "periodoDescripcion" },
+            { Header: "Carrera", accessor: "carreraNombre" },
+            { Header: "Vulnerable", accessor: "cupoVulnerable" },
+            { Header: "Merito Academico", accessor: "cupoMeritoAcademico" },
+            { Header: "UltimoBachiller", accessor: "cupoUltimoBachiller" },
+            { Header: "General", accessor: "cupoGenera" },
+            { Header: "Vulnerable Aceptado", accessor: "cupoVulnerableAceptado" },
+            { Header: "M. Academico Aceptado", accessor: "cupoMeritoAcademicoAceptado" },
+            { Header: "U. Bachiller Aceptado", accessor: "cupoUltimoBachillerAceptado" },
+            { Header: "General Aceptado", accessor: "cupoGeneralAceptado" },
+          /*   { Header: "Estado", accessor: "estado" },
+            { Header: "Tipo", accessor: "tipo" }, */
             {
                 Header: "Acciones",
                 accessor: "actions",
@@ -97,10 +93,9 @@ const ListaPeriodo= ()=> {
     return (  
         <div className="container p-4">
         <div className="header">
-          <h3 className="me-auto">Periodos Academicos</h3>  
-          <button className="nuevo" onClick={()=>setOpenModal(true)} >Nuevo Periodo</button>
-          <CrearPeriodo open={openModal} onClose={()=>setOpenModal(false)} onProgramaCreated={handleNewPrograma}/>
-          <button className="nuevo" onClick={()=>handlePeriodoCarrera()} >Carreras / Periodo</button>
+          <h3 className="me-auto">Carreras / Periodos Academicos</h3>  
+          <button className="nuevo" onClick={()=>setOpenModalPeriodo(true)} >Nuevo Carrera / Periodo</button>
+          
           <CrearPeriodoCarrera row={fila} open={openModalPeriodo} onClose={()=>setOpenModalPeriodo(false)} onProgramaCreated={handleNewPrograma}/>
         </div>
         <table {...getTableProps()} border="1" className="tableLista">
@@ -137,4 +132,4 @@ const ListaPeriodo= ()=> {
     );
 }
 
-export default ListaPeriodo ;
+export default ListaPeriodoCarrera ;

@@ -17,6 +17,7 @@ import MenuAdmin from '../pages/admin/menuAdmin.jsx';
 import AdminAreaLista from '../pages/admin/area/lista.jsx';
 import AdminAreaCrear from '../pages/admin/area/create.jsx'
 import AdminPeriodos from '../pages/admin/periodo/listaperiodo.jsx'
+import AdminPeriodosCarreras from '../pages/admin/periodo/listaperiodoCarrera.jsx'
 import AdminProgramas from '../pages/admin/programa/listaprograma.jsx'
 import AdminMaterias from '../pages/admin/materias/listamaterias.jsx'
 import AdminCursos from '../pages/admin/cursos/listacursos.jsx'
@@ -54,6 +55,7 @@ const Pagerouter = () =>{
                         <Route path='AdminAreaLista' element={ <AdminAreaLista /> } />
                         <Route path='AdminAreaCrear' element={ <AdminAreaCrear /> } />
                         <Route path='AdminPeriodos' element={ <AdminPeriodos /> } />
+                        <Route path='AdminPeriodosCarreras' element={ <AdminPeriodosCarreras /> } />
                         <Route path='AdminMaterias' element={ <AdminMaterias/> } />
                         <Route path='AdminCursos' element={ <AdminCursos/> } />
                         <Route path='AdminAsignacion' element={ <AdminAsignacion/> } />

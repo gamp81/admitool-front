@@ -92,38 +92,37 @@ const ListaCursos= ()=> {
           <CrearCurso open={openModal} onClose={()=>setOpenModal(false)} onProgramaCreated={handleNewPrograma}/>
         </div>
         <div className="overflow-x-auto p-2">
-      <table className="w-auto text-xs border border-gray-300">
+      <table className="min-w-full text-[10px] border border-gray-300">
         <thead>
-          <tr className="bg-gray-200">
-            <th className="border px-4 py-2">Área de Conocimiento</th>
-            <th className="border px-4 py-2">Carreras</th>
-            <th className="border px-4 py-2">Materia</th>
-            <th className="border px-4 py-2">Estudiantes</th>
-            <th className="border px-4 py-2">Cursos Recomendados</th>
-            <th className="border px-4 py-2">Cursos Creados</th>
-            <th className="border px-4 py-2">Cursos Faltantes</th>
-            <th className="border px-4 py-2">Capacidad Sugerida</th>
+          <tr className="bg-gray-200 text-[11px]">
+            <th className="border px-2 py-1 whitespace-nowrap">Área de Conocimiento</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Carreras</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Materia</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Estudiantes</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Cursos Recomendados</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Cursos Creados</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Cursos Faltantes</th>
+            <th className="border px-2 py-1 whitespace-nowrap">Capacidad Sugerida</th>
           </tr>
         </thead>
         <tbody>
-          {reco.map((area, index) =>
-            area.materias.map((materia, mIndex) => (
-              <tr key={`${index}-${mIndex}`} className="border">
-                <td className="border px-4 py-2">
-                  {mIndex === 0 ? area.areaConocimiento : ""}
-                </td>
-                <td className="border px-4 py-2">
-                  {mIndex === 0 ? area.carreras.join(", ") : ""}
-                </td>
-                <td className="border px-4 py-2">{materia.materia}</td>
-                <td className="border px-4 py-2">{materia.estudiantes}</td>
-                <td className="border px-4 py-2">{materia.cursosRecomendados}</td>
-                <td className="border px-4 py-2">{materia.cursosCreados}</td>
-                <td className="border px-4 py-2">{materia.cursosFaltantes}</td>
-                <td className="border px-4 py-2">{materia.capacidadSugerida}</td>
-              </tr>
-            ))
-          )}
+        
+          {reco.map((area) =>
+          area.materias.map((materia, materiaIndex) => (
+            <tr key={`${area.areaConocimientoId}-${materiaIndex}`} className="border">
+              <td className="border px-4 py-2">{area.areaConocimiento}</td>
+              <td className="border px-4 py-2">
+                {area.carreras.map((carrera) => carrera.carreraNombre).join(", ")}
+              </td>
+              <td className="border px-4 py-2">{materia.materia}</td>
+              <td className="border px-4 py-2">{materia.estudiantes}</td>
+              <td className="border px-4 py-2">{materia.cursosRecomendados}</td>
+              <td className="border px-4 py-2">{materia.cursosCreados}</td>
+              <td className="border px-4 py-2">{materia.cursosFaltantes}</td>
+              <td className="border px-4 py-2">{materia.capacidadSugerida}</td>
+            </tr>
+          ))
+        )}
         </tbody>
       </table>
     </div>

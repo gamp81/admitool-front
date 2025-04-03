@@ -1,19 +1,77 @@
-import { useState,useContext } from "react";
+import { useState,useContext,useEffect } from "react";
 import '../style/documentacion.css';
 import { UserContext } from '../context/UserContext';
-
+import { AuthContext } from "../context/AuthContext";
 export default function Documentacion() {
   const apiUrl = process.env.REACT_APP_API_URL ;
   const [image, setImage] = useState(null);
   const [pdf, setPdf] = useState(null);
   const [error, setError] = useState("");
   const {userData} = useContext(UserContext);
+  const { token} = useContext(AuthContext);
 
+   useEffect(() => {
+      if (!token || !userData?.documentos?.length) return; // Evita hacer la petición si token es null o undefined
+  
+      const fetchData = async (index, setFile) => {
+        if (!userData.documentos[index]) return;
+          try {
+              console.log("El componente se ha renderizado",userData.documentos[1].nombre );
+              const response = await fetch(`${apiUrl}PostulantFile/GetData?fileName=${userData.documentos[1].nombre}`, {
+                  method: "GET",
+                  headers: {
+                      "Content-Type": "application/json",
+                      "Authorization": `Bearer ${token}`
+                  }
+              });
+  
+              if (!response.ok) {
+                  throw new Error(`Error en la solicitud: ${response.statusText}`);
+              }
+  
+              const result = await response.json();
+              console.log("Datos obtenidos result.data: ", result);
+              // Convertir `byteArray` en URL para visualizar la imagen/PDF
+              const blob = new Blob([new Uint8Array(result.byteArray)], { type: index === 0 ? "image/jpeg" : "application/pdf" });
+              const url = URL.createObjectURL(blob);
+              setFile(url);
+          } catch (error) {
+              console.error("Error al obtener los datos:", error);
+          }
+      };
+      
+        fetchData(1, setPdf);   // Obtener PDF
+        fetchData(0, setImage); // Obtener imagen
+    /*   const fetchData2 = async () => {
+        try {
+            console.log("El componente se ha renderizado",userData.documentos[1].nombre );
+            const response = await fetch(`${apiUrl}PostulantFile/GetData?fileName=${userData.documentos[0].nombre}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            console.log("Datos obtenidos result.data: ", result);
+            setImage(result.byteArray);
+        } catch (error) {
+            console.error("Error al obtener los datos:", error);
+        }
+    }; */
+      /* 
+      fetchData2(); */
+      }, [token, userData, apiUrl]);
   const handleFileChange = (event, type) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    if (type === "image" && file.type !== "image/png" && file.type !== "image/jpeg") {
+    if (type === "image" && !["image/png", "image/jpeg"].includes(file.type)) {
       setError("Solo se permiten imágenes PNG o JPEG");
       return;
     }
@@ -23,7 +81,8 @@ export default function Documentacion() {
     }
     
     setError("");
-    type === "image" ? setImage(file) : setPdf(file);
+    //type === "image" ? setImage(file) : setPdf(file);
+    type === "image" ? setImage(URL.createObjectURL(file)) : setPdf(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (event) => {
@@ -58,10 +117,18 @@ export default function Documentacion() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="photo-section">
             <div className="upload-box">
-                {image ? ( <img src={image} alt="Preview" className="photo-preview" />) : ( 
+                {/* {image ? ( <img src={image} alt="Preview" className="photo-preview" />) : ( 
                 <label className="upload-label">Subir archivo
                 <input type="file" id="photo-upload" accept="image/jpeg, image/png" onChange={(e) => handleFileChange(e, "image")} />
                 </label>
+                )} */}
+                {image ? (
+                  <img src={image} alt="Preview" className="photo-preview" />
+                ) : (
+                  <label className="upload-label">
+                    Subir imagen
+                    <input type="file" accept="image/jpeg, image/png" onChange={(e) => handleFileChange(e, "image")} />
+                  </label>
                 )}
             </div>
             <div className="recommendations">
@@ -77,10 +144,18 @@ export default function Documentacion() {
         </div>
         <h2>Documentación Adicional</h2>
         <div className="document-section">
-            <label htmlFor="document-upload" className="upload-label">
+            {/* <label htmlFor="document-upload" className="upload-label">
             {pdf ? (<span>{pdf.name}</span> ) : ( <span>Arrastra y suelta tu archivo aquí o haz clic para subir</span> )}
-            <input id="document-upload" type="file" accept="application/pdf" onChange={(e) => handleFileChange(e, "pdf")} />
-          </label>
+            <input id="document-upload" type="file" accept="application/pdf" onChange={(e) => handleFileChange(e, "pdf")}/>
+          </label> */}
+          {pdf ? (
+            <embed src={pdf} type="application/pdf" width="100%" height="300px" />
+          ) : (
+            <label htmlFor="document-upload" className="upload-label">
+              <span>Arrastra y suelta tu archivo aquí o haz clic para subir</span>
+              <input id="document-upload" type="file" accept="application/pdf" onChange={(e) => handleFileChange(e, "pdf")} />
+            </label>
+          )}
           
         </div>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">Subir</button>
