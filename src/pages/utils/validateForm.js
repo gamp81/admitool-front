@@ -122,8 +122,39 @@ export const valiCurso = yup.object().shape({
   .matches(/^\d+$/, "Solo se permiten números.")
   .nullable(),
   //.required("Es obligatorio."),
-  
-  
-  
-  
+    
+});
+export const validaPeriodo = yup.object().shape({
+  descripcion: yup.string().required("La descripcion es obligatoria."),
+  anio: yup.string().required("Año es obligatorio."), 
+  fechaRegistro: yup.date().required("Fecha es obligatoria."),
+  fechaVigenciaDesde: yup.date().required(" es obligatoria."),
+  fechaVigenciaHasta: yup.date().required(" es obligatoria."),
+  tipo: yup.string().required("tipo es obligatorio."), 
+  estado: yup.string().required("Estado es obligatorio."), 
+  //.nullable(),
+ });
+ export const validaPeriodoCarrera = yup.object().shape({
+            //periodoId: yup.string()
+            //.matches(/^\d+$/, "Solo se permiten números.").nullable(),
+            //.required("Es obligatorio."),
+            //carreraId: yup.string()
+           // .matches(/^\d+$/, "Solo se permiten números.")//.nullable(),
+            //.required("Es obligatorio."),
+            cupoVulnerable: yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoMeritoAcademico:yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoUltimoBachiller:yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoGenera:yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoVulnerableAceptado: yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoMeritoAcademicoAceptado:yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoUltimoBachillerAceptado:yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
+            cupoGeneralAceptado:yup.string()
+            .matches(/^\d+$/, "Solo se permiten números.").required("Es obligatorio."),
 });

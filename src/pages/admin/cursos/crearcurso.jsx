@@ -6,11 +6,15 @@ function CrearCurso({open,onClose,onProgramaCreated}) {
     const apiUrl = process.env.REACT_APP_API_ADMIN ;
     const [areas,setAreas]=useState([]);
     const [materias,setMaterias]= useState([]);
+    const [periodos,setPeriodos] = useState([]);
+    const [profesores,setProfesores] = useState([]);
     const today = new Date();
     useEffect(()=>{
         fetchData();
         fetchMateria();
-      },open);
+        fetchPeriodo();
+        fetchProfesor();
+      },[open]);
       const fetchData = ()=>{
         fetch(`${apiUrl}KnowledgeArea/GetAll`,{
           method:"GET",
@@ -39,21 +43,34 @@ function CrearCurso({open,onClose,onProgramaCreated}) {
           //console.log("datos Materium : Object.values(result.listData)",Object.values(result.listData));
         }).catch(error=>console.log("Error al obtener los datos",error));
       }
-      const fetchPeriodo = ()=>{
-        fetch(`${apiUrl}KnowledgeArea/GetAll`,{
-          method:"GET",
-          headers:{
-            "Content-Type":"application/json",
-            /* "Authorization": `Bearer ${token}` */
-          }
-        }).then(response=>response.json())
-        .then(result=>{
-          console.log("datos traidos al modal : ",result.listData);
-          setAreas(Object.values(result.listData)|| []);
-          console.log("datos traidos : Object.values(result.listData)",Object.values(result.listData));
-        }).catch(error=>console.log("Error al obtener los datos",error));
+      const fetchPeriodo= () =>{
+        fetch(`${apiUrl}Periodo`,{
+            method:"GET",
+            headers:{
+              "Content-Type":"application/json",
+              /* "Authorization": `Bearer ${token}` */
+            }
+          }).then(response=>response.json())
+          .then(result=>{
+            console.log("datos traidos al Periodo : ",result);
+            setPeriodos(Object.values(result)|| []);
+            console.log("datos traidos : Object.values(result.listData)",Object.values(result.listData));
+          }).catch(error=>console.log("Error al obtener los datos",error));
       }
-
+      const fetchProfesor= () =>{
+        fetch(`${apiUrl}Usuarios/profesores`,{
+            method:"GET",
+            headers:{
+              "Content-Type":"application/json",
+              /* "Authorization": `Bearer ${token}` */
+            }
+          }).then(response=>response.json())
+          .then(result=>{
+            console.log("datos traidos al Periodo : ",result);
+            setProfesores(Object.values(result)|| []);
+            console.log("datos traidos : Object.values(result.listData)",Object.values(result.listData));
+          }).catch(error=>console.log("Error al obtener los datos",error));
+      }
     const formikPrograma = useFormik({
         initialValues:{
          
@@ -147,9 +164,9 @@ function CrearCurso({open,onClose,onProgramaCreated}) {
                             <option value="">Seleccione dia</option>
                             <option value="Lunes">Lunes</option>
                             <option value="Martes">Martes</option>
-                            <option value="Miercoles">Martes</option>
-                            <option value="Jueves">Martes</option>
-                            <option value="Viernes">Martes</option>
+                            <option value="Miercoles">Miercoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
                            
                             </select>
                             {formikPrograma.touched.diaSemana && formikPrograma.errors.diaSemana && (
@@ -207,9 +224,9 @@ function CrearCurso({open,onClose,onProgramaCreated}) {
                             onBlur={formikPrograma.handleBlur}>
                             
                             <option value="">Seleccione profesor</option>
-                            {areas.map((area,index)=>(
-                                <option key={index} value={area.id}>
-                                    {area.name}</option>
+                            {profesores.map((profesor,index)=>(
+                                <option key={index} value={profesor.id}>
+                                    {profesor.nombre}</option>
                             ))}
                             </select>
                             {formikPrograma.touched.profesorId && formikPrograma.errors.profesorId && (
@@ -244,10 +261,11 @@ function CrearCurso({open,onClose,onProgramaCreated}) {
                             onChange={formikPrograma.handleChange}
                             onBlur={formikPrograma.handleBlur}>
                             
-                            <option value="">Seleccione periodo</option>
-                            <option value="1">Abierto</option>
-                            <option value="2">Cerrado</option>
-                           
+                            <option value="">Seleccione modalidad</option>
+                            {periodos?.map((periodo,index)=>(
+                                <option key={index} value={periodo.id}>
+                                    {periodo.descripcion}</option>
+                            ))}
                             </select>
                             {formikPrograma.touched.periodoId && formikPrograma.errors.periodoId && (
                                 <div className="error">{formikPrograma.errors.periodoId}</div>

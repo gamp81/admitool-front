@@ -8,7 +8,7 @@ export const useAuth = () =>{
     }
     return context;
 };
-export const AuthPovider = ({children}) => {
+export const AuthProvider = ({children}) => {
     const [user,setUser]=useState({});
    const [isAuthenticated, setIsAuthenticated] = useState(false);
    console.log("verifica isAuthenticated antes de useefect ");

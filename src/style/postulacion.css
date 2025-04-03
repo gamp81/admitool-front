@@ -97,6 +97,12 @@
     color: #444;
     font-size: 16px;
     line-height: 1.5;
+  
+  }
+  .puntaje {
+    border: "1px solid #ccc"; 
+    padding: "10px"; 
+    /* //marginBottom: "5px"; */
   }
   
   .assignment-group div strong,

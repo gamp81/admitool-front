@@ -1,8 +1,9 @@
-import React, { useState,useContext } from 'react';
-
+import React, { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { AuthContext } from "../context/AuthContext";
 import { useFormik } from 'formik';
 const ContactFamily = () => {
+     const { user,token } = useContext(AuthContext);
     const apiUrl = process.env.REACT_APP_API_URL ;
     const { userData } = useContext(UserContext);
     console.log('resultado userData',userData);
@@ -18,7 +19,9 @@ const ContactFamily = () => {
             const allData={...values};
             fetch(`${apiUrl}Postulant/UpdateContactDataPostulant`,{
                 method: 'POST',
-                headers:{ 'Content-Type':'application/json'},
+                headers:{ 'Content-Type':'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
                 body:JSON.stringify(allData)
               }).then(result=>{
                 console.log('resultado',result);
