@@ -1,5 +1,5 @@
 
-import './App.css';
+import '../style/App.css';
 import Footer from '../layouts/footer';
 import { AuthProvider } from '../context/AuthContext';
 import Pagerouter from '../router/pagerouter';

@@ -12,6 +12,7 @@ import Postulacion from '../pages/postulacion';
 import Logoutbutton from '../components/logout.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Inscription from '../components/inscripcionDownload.jsx';
+import Aceptacion from '../pages/aceptacion.jsx';
 import RecoverPassword from '../pages/recuperarcuenta.jsx';
 import MenuAdmin from '../pages/admin/menuAdmin.jsx';
 import AdminAreaLista from '../pages/admin/area/lista.jsx';
@@ -48,6 +49,9 @@ const Pagerouter = () =>{
                     </Route>
                     <Route element={<ProtectedRoute allowedRoles={["/postulacion"]} />}>
                         <Route path='postulacion' element={<UserProvider><Postulacion/></UserProvider>} />
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["/aceptacion"]} />}>
+                        <Route path='aceptacion' element={<UserProvider><Aceptacion/></UserProvider>} />
                     </Route>
                     <Route element={<ProtectedRoute allowedRoles={["/menuadmin"]} />}>
                         <Route path='menuadmin' element={<MenuAdmin/>} />

@@ -24,7 +24,7 @@ export default function Carrera() {
   const apiUrl = process.env.REACT_APP_API_URL ;
   const navigate = useNavigate();
   useEffect(() => {
-    console.log("Enviando token:", token);
+    //console.log("Enviando token:", token);
     fetch(`${apiUrl}Inscription/GetKnowledgeArea`, {
       method: "GET",
       headers: {
@@ -63,7 +63,7 @@ export default function Carrera() {
     }
 
     const payload = {
-      PostulanteId: parseInt(user?.usrId) || 0,
+      PostulanteId: parseInt(user?.posId) || 0,
       areaId: selectedAreaId,
       options: selectedCareers
     };
