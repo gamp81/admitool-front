@@ -12,17 +12,17 @@ const ListaProgramas= ()=> {
     const fetchData = () =>{
         
         console.log("datos data : ",data);
-        fetch(`${apiUrl}KnowledgeArea/GetAll`,{
+        fetch(`${apiUrl}Carrera`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
             }
         }).then(response=>response.json())
         .then(result=>{
-          console.log("datos traidos : ",result.listData);
-          console.log("datos traidos : ",result.listData[0].name);
-          setData(Object.values(result.listData)|| []);
-          console.log("datos traidos : Object.values(result.listData)",Object.values(result.listData));
+          console.log("datos traidos : ",result);
+          //console.log("datos traidos : ",result);
+          setData(Object.values(result)|| []);
+          console.log("datos traidos : Object.values(result.listData)",Object.values(result));
         }).catch(error=>console.log("Error al obtener los datos",error));
     }
     const handleEdit = (row) => {
@@ -37,9 +37,9 @@ const ListaProgramas= ()=> {
     const columns = React.useMemo(
         ()=>[
             { Header: "ID", accessor: "id" },
-            { Header: "Nombre", accessor: "name" },
-            { Header: "Modalidad", accessor: "order" },
-            { Header: "Area Conocimiento", accessor: "descripcion" },
+            { Header: "Nombre", accessor: "nombre" },
+            { Header: "Modalidad", accessor: "modalidad" },
+            { Header: "Area Conocimiento", accessor: "areaConocimientoNombre" },
             {
                 Header: "Acciones",
                 accessor: "actions",

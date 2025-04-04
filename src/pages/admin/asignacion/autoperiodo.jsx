@@ -70,7 +70,7 @@ function AutoPeriodo({open,onClose,onProgramaCreated}) {
                             onChange={formikAutoPeriodo.handleChange}
                             onBlur={formikAutoPeriodo.handleBlur}>
                             
-                            <option value="">Seleccione modalidad</option>
+                            <option value="">Seleccione periodo</option>
                             {periodos.map((periodo,index)=>(
                                 <option key={index} value={periodo.id}>
                                     {periodo.descripcion}</option>

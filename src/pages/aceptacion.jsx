@@ -2,19 +2,21 @@ import React, { useEffect, useState,useContext } from "react";
 import {AuthContext} from '../context/AuthContext'
 import { UserContext } from '../context/UserContext';
 import CardMenu from '../components/cardMenu';
+import {useNavigate} from "react-router-dom"
 const Aceptacion= ()=> {
     const { userData } = useContext(UserContext);
     const { token } = useContext(AuthContext);
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = process.env.REACT_APP_API_ADMIN;
     const [data,setData] = useState([]);
     const [postulanteData,setPostulanteData] = useState([]);
+    const navigate = useNavigate();
     useEffect(()=>{
         fetchData();
     },[]);
     const fetchData = async () => {
         try {
             console.log("El componente se ha renderizado");
-            const response = await fetch(`${apiUrl}/api/AsignacionCurso/asignacion/aspirante?identificacion=${userData?.identificacion}`, {
+            const response = await fetch(`${apiUrl}AsignacionCurso/asignacion/aspirante?identificacion=${userData?.identificacion}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,14 +29,21 @@ const Aceptacion= ()=> {
             }
 
             const result = await response.json();
-            console.log("Datos obtenidos result.data: ", result.data);
+            //console.log("Datos obtenidos result.data: ", result.data);
             setPostulanteData(result.data);
         } catch (error) {
             console.error("Error al obtener los datos:", error);
         }
     };
 
-  
+    const handleAceptar =()=>{
+        console.log("hola desde hablde ");
+        navigate("/menu");
+    }
+    const handleRechazar =()=>{
+        console.log("hola desde handleRechazar ");
+        navigate("/menu");
+    }
         // Filtrar la carrera con prioridad 1
        /*  const firstPriorityCareer = postulanteData.careerResponses.filter(
           (career) => career.priority === 1
@@ -58,11 +67,11 @@ const Aceptacion= ()=> {
                         ) : (
                         <p>No hay carrera con prioridad 1.</p>
                         ) } */}
-                    <p> Area de conocimiento : {postulanteData?.area}</p>
-                    {/* <p> Carrera : {postulanteData?.careerResponses[0]?.careerName || "No hay datos disponibles"} </p> */}
+                    <p> Area de conocimiento : {postulanteData?.area || "No se encontro registro"}  </p>
+                    <p> Carrera : {postulanteData?.careerName || "No hay datos disponibles"} </p>
                     <div className="card-containerAceptacion">
-                        <CardMenu icon="✅" text="ACEPTAR" color="#f5a623" />
-                        <CardMenu icon="❌​" text="RECHAZAR" color="#f5a623" />
+                        <button onClick={() => handleAceptar()}><CardMenu icon="✅" text="ACEPTAR" color="#f5a623"   /></button>
+                        <button onClick={() => handleRechazar()}><CardMenu icon="❌​" text="RECHAZAR" color="#f5a623" /></button>
                     </div>
             
             </div>
